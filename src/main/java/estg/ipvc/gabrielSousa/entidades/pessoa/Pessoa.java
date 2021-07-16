@@ -9,10 +9,12 @@ public class Pessoa implements java.io.Serializable {
     private String ultimoNome;
     private String email;
     private String contato;
+    private static int contadorPessoa;
 
-    public Pessoa(int id_pessoa, TipoPessoa tipoPessoa, String login, String password,
+    public Pessoa( TipoPessoa tipoPessoa, String login, String password,
                   String primeiroNome, String ultimoNome, String email, String contato) {
-        this.id_pessoa = id_pessoa;
+        this.id_pessoa = contadorPessoa;
+        contadorPessoa +=1;
         this.tipoPessoa = tipoPessoa;
         this.login =login;
         this.password = password;
@@ -69,6 +71,10 @@ public class Pessoa implements java.io.Serializable {
 
    public TipoPessoa getTipoPessoa(){return tipoPessoa;}
 
+    public static int getContadorPessoa() {
+        return contadorPessoa;
+    }
+
     //Setters
     public void setId_pessoa(int id_pessoa) {
         this.id_pessoa = id_pessoa;
@@ -106,4 +112,7 @@ public class Pessoa implements java.io.Serializable {
         return this.login.equals(login) && this.password.equals(password);
     }
 
+    public static void setContadorPessoa(int contadorPessoa) {
+        Pessoa.contadorPessoa = contadorPessoa;
+    }
 }
