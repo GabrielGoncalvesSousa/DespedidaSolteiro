@@ -1,6 +1,5 @@
-package menus.base;
-
-import entidades.MainData;
+package estg.ipvc.gabrielSousa.menus.base;
+import estg.ipvc.gabrielSousa.entidades.MainData;
 
 public abstract class SingleOption {
     /** Constant static that stores the data to be used by other menus */

@@ -3,15 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menus.base;
-
-/**
- * @author Gabriel Sousa
- */
-
-import com.sun.tools.javac.Main;
-import entidades.MainData;
-import menus.Serialization;
+package estg.ipvc.gabrielSousa.menus.base;
+import estg.ipvc.gabrielSousa.entidades.MainData;
 
 import java.util.Arrays;
 import java.util.Scanner;

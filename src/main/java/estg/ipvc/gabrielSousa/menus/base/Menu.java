@@ -1,6 +1,5 @@
 
-package menus.base;
-import menus.Serialization;
+package estg.ipvc.gabrielSousa.menus.base;
 
 public interface Menu {
     void action();

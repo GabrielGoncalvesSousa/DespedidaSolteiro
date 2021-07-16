@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package menus.mainMenu;
+package estg.ipvc.gabrielSousa.menus.mainMenu;
 
-import entidades.MainData;
-import menus.base.Menu;
-import menus.base.OptionsMenu;
 
+import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.menus.base.Menu;
+import estg.ipvc.gabrielSousa.menus.base.OptionsMenu;
 
 /**
  *

@@ -1,9 +1,9 @@
-package menus.mainMenu;
+package estg.ipvc.gabrielSousa.menus.mainMenu;
 
-import entidades.MainData;
-import entidades.pessoa.Funcionario;
-import menus.base.Menu;
-import menus.base.SingleOption;
+import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.pessoa.Funcionario;
+import estg.ipvc.gabrielSousa.menus.base.Menu;
+import estg.ipvc.gabrielSousa.menus.base.SingleOption;
 
 public class TesteMenu extends SingleOption implements Menu {
 

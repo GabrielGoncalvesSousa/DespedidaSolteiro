@@ -1,4 +1,4 @@
-package entidades.pessoa;
+package estg.ipvc.gabrielSousa.entidades.pessoa;
 
 public class Cliente extends Pessoa {
 

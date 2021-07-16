@@ -1,9 +1,10 @@
-package menus.mainMenu;
+package estg.ipvc.gabrielSousa.menus.mainMenu;
 
-import entidades.MainData;
-import entidades.pessoa.Pessoa;
-import menus.base.Menu;
-import menus.base.SingleOption;
+
+import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
+import estg.ipvc.gabrielSousa.menus.base.SingleOption;
+import estg.ipvc.gabrielSousa.menus.base.Menu;
 
 import java.util.Scanner;
 

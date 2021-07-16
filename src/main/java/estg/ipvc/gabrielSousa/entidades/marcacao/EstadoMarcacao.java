@@ -1,4 +1,4 @@
-package ipvc.gabrielSousa.entidades;
+package estg.ipvc.gabrielSousa.entidades.marcacao;
 
 public class EstadoMarcacao {
     private int id_estadoMarcacao;

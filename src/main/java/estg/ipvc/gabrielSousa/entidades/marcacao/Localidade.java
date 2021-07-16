@@ -1,4 +1,4 @@
-package ipvc.gabrielSousa.entidades;
+package estg.ipvc.gabrielSousa.entidades.marcacao;
 
 public class Localidade implements java.io.Serializable {
     private String codigo_postal;

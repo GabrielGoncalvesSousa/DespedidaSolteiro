@@ -1,4 +1,4 @@
-package ipvc.gabrielSousa.entidades;
+package estg.ipvc.gabrielSousa.entidades.marcacao;
 
 public class Marcacao implements java.io.Serializable {
     private int id_marcacao;

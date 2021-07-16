@@ -1,4 +1,4 @@
-package entidades.pessoa;
+package estg.ipvc.gabrielSousa.entidades.pessoa;
 
 public class TipoPessoa implements java.io.Serializable {
     private int id_tipoPessoa;

@@ -1,5 +1,7 @@
 package estg.ipvc.gabrielSousa.entidades;
 
+import estg.ipvc.gabrielSousa.entidades.pessoa.*;
+import estg.ipvc.gabrielSousa.entidades.marcacao.*;
 
 import java.util.ArrayList;
 
