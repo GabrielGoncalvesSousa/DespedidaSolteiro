@@ -1,3 +1,5 @@
+package ipvc.estg.gabrielSousa.main.java;
+
 import entidades.Distrito;
 import entidades.MainData;
 import menus.mainMenu.MainMenu;
@@ -7,7 +9,7 @@ public class Main {
     public static void main(String[] args) {
         Serialization serialization = new Serialization();
 
-        //Save fabricated data
+        //Save fabricated data bruh
         MainData data = new MainData();
         serialization.saveData(data);
 
