@@ -3,7 +3,7 @@ package estg.ipvc.gabrielSousa.menus.base;
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
-public class DataFilters extends SingleOption {
+public class DataFilters extends SingleLeveledMenu {
     public DataFilters(MainData data) {
         super(data);
     }
