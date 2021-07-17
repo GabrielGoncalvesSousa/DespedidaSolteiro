@@ -7,8 +7,11 @@ package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
+
+import java.util.Stack;
 
 /**
  *
@@ -16,13 +19,12 @@ import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
  */
 
 public class MultiMenu_MainMenu extends MultiLeveledMenu {
-
+    private Stack <Menu> menus = super.getMenusStack();
 
     public MultiMenu_MainMenu(MainData data) {
         super(new Menu[] {
                 new MultiMenu_Login(data),
                 new SingleMenu_PreRegisto(data)
-
         });
         super.setData(data);
     }

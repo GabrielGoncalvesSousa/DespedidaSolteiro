@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a8e491-81f3-4a63-8ad8-7775ab85a7aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataCheckers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataCheckers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/LoginMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/PreRegisto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_PreRegisto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +87,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Prog2EpocaEspecial-fixing_marcacao_class" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cmd_menus" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -131,7 +132,7 @@
       <workItem from="1626455768135" duration="914000" />
       <workItem from="1626456817236" duration="11167000" />
       <workItem from="1626481235661" duration="10282000" />
-      <workItem from="1626535260863" duration="2452000" />
+      <workItem from="1626535260863" duration="12721000" />
     </task>
     <servers />
   </component>

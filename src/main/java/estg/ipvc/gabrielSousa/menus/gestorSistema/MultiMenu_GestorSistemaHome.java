@@ -16,8 +16,10 @@ public class MultiMenu_GestorSistemaHome extends MultiLeveledMenu {
 
     @Override
     public String getName() {
-        return "Main Menu";
+        return "Main Menu Gestor Sistema";
     }
+
+    super
 
 }
 

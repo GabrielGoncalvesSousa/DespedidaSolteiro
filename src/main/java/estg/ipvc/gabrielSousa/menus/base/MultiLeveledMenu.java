@@ -24,6 +24,10 @@ public abstract class MultiLeveledMenu implements Menu {
     private static final DataCheckers dataCheckers = new DataCheckers(data);
     private static DataFilters dataFilters = new DataFilters(data) ;
 
+    public MultiLeveledMenu() {
+
+    }
+
 
     /**An helper function to read an option from the command line */
     protected static int readOption() {
@@ -35,8 +39,6 @@ public abstract class MultiLeveledMenu implements Menu {
 
     /**The options for this menu **/
     private Menu[] menus;
-
-
 
     public Serialization getSerialization(){
         return serialization;
@@ -75,7 +77,9 @@ public abstract class MultiLeveledMenu implements Menu {
         System.out.println(String.format("*****%s*****", name.replaceAll(".", "*")));
     }
 
-
+    public Stack<Menu> getMenusStack() {
+        return menusStack;
+    }
 
     @Override
     public void action() {
@@ -118,13 +122,7 @@ public abstract class MultiLeveledMenu implements Menu {
     @Override
     public abstract String getName();
 
-    public void addMenu(Menu menu){
-        menusStack.push(menu);
-    }
-
-    public final void run() {
-
-        menusStack.push(this);
+    public void stackManipulation(){
         while (!menusStack.empty()) {
             Menu currentMenu = menusStack.peek();
             currentMenu.action();
@@ -139,5 +137,15 @@ public abstract class MultiLeveledMenu implements Menu {
                 menusStack.pop();
             }
         }
+    }
+
+    public void addMenu(Menu menu){
+        menusStack.push(menu);
+        stackManipulation();
+    }
+
+    public final void run() {
+        menusStack.push(this);
+        stackManipulation();
     }
 }
