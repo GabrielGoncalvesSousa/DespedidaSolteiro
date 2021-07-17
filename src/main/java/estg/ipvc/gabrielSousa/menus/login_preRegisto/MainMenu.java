@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estg.ipvc.gabrielSousa.menus.mainMenu;
+package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
@@ -20,7 +20,8 @@ public class MainMenu extends OptionsMenu {
     public MainMenu(MainData data) {
         super(new Menu[] {
                 new LoginMenu(data),
-                new TesteMenu(data)
+                new PreRegisto(data)
+
         });
         super.setData(data);
     }

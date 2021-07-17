@@ -2,8 +2,8 @@ package estg.ipvc.gabrielSousa;
 
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
-import estg.ipvc.gabrielSousa.menus.Serialization;
-import estg.ipvc.gabrielSousa.menus.mainMenu.MainMenu;
+import estg.ipvc.gabrielSousa.menus.base.Serialization;
+import estg.ipvc.gabrielSousa.menus.login_preRegisto.MainMenu;
 
 public class Main {
     public static void main(String[] args) {

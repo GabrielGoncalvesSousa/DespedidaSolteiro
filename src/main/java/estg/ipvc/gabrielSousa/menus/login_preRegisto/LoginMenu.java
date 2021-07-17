@@ -1,4 +1,4 @@
-package estg.ipvc.gabrielSousa.menus.mainMenu;
+package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
@@ -14,6 +14,7 @@ public class LoginMenu extends SingleOption implements Menu {
         super(data);
     }
 
+
     @Override
     public void action() {
         Scanner scanner = new Scanner(System.in);
@@ -22,24 +23,25 @@ public class LoginMenu extends SingleOption implements Menu {
         System.out.println("Introduza a password");
         String password = scanner.nextLine();
 
-        /** Reset the current pessoa
-         *
-         */
         getData().setCurrentPessoa(null);
 
-
-
+        //checks if login and password exists
         try {
             for (Pessoa p : getData().getPessoas()) {
                 if (p.login(login, password)) {
+
+                    //The current user is stored in a instance var.
                     getData().setCurrentPessoa(p);
                     break;
                 }
             }
 
-            if(getData().getCurrentPessoa() == null){
+            //if it doesnt exit it throws the exception
+            if (getData().getCurrentPessoa() == null) {
                 throw new Exception();
-            }else{
+
+                //else prints the login with success.
+            } else {
                 System.out.println("Login com sucesso " + getData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
                         + getData().getCurrentPessoa().getPrimeiroNome() + " " + getData().getCurrentPessoa().getUltimoNome());
             }
@@ -48,8 +50,6 @@ public class LoginMenu extends SingleOption implements Menu {
             System.out.println("Credenciais Invalidas");
         }
     }
-
-
 
     @Override
     public String getName() {

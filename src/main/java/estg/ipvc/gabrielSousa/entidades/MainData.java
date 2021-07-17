@@ -26,13 +26,15 @@ public class MainData implements java.io.Serializable {
         }
 
         tpPessoas.add(new TipoPessoa(0, "Gestor de Sistema"));
-        pessoas.add(new GestorSistema(0, tpPessoas.get(0), "login", "123", "Gabriel", "Sousa"
+        pessoas.add(new GestorSistema( tpPessoas.get(0), "login", "123", "Gabriel", "Sousa"
                 , "gabrielsousa@ipvc.pt", "915875985"));
 
         tpPessoas.add(new TipoPessoa(1, "Funcionario"));
-        pessoas.add(new Funcionario(1, tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
+        pessoas.add(new Funcionario( tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
                 , "nunoOliveira@ipvc.pt", "934506842"));
 
+        tpPessoas.add(new TipoPessoa(2, "Fornecedor"));
+        tpPessoas.add(new TipoPessoa(3, "Cliente"));
     }
 
     public ArrayList<Distrito> getDistritos() {
@@ -54,5 +56,11 @@ public class MainData implements java.io.Serializable {
     public Pessoa getCurrentPessoa() {
         return currentPessoa;
     }
+
+    public void registarPessoa(Pessoa p){
+        pessoas.add(p);
+    }
+
+
 
 }

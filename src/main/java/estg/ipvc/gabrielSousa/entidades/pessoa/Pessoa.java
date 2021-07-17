@@ -9,34 +9,22 @@ public class Pessoa implements java.io.Serializable {
     private String ultimoNome;
     private String email;
     private String contato;
+    private static int contadorPessoa;
+    private boolean isAprovado;
 
-    public Pessoa(int id_pessoa, TipoPessoa tipoPessoa, String login, String password,
-                  String primeiroNome, String ultimoNome, String email, String contato) {
-        this.id_pessoa = id_pessoa;
+    public Pessoa(TipoPessoa tipoPessoa, String login, String password,
+                  String primeiroNome, String ultimoNome, String email, String contato,boolean isAprovado) {
+        this.id_pessoa = contadorPessoa;
+        contadorPessoa += 1;
         this.tipoPessoa = tipoPessoa;
-        this.login =login;
+        this.login = login;
         this.password = password;
         this.primeiroNome = primeiroNome;
         this.ultimoNome = ultimoNome;
         this.email = email;
         this.contato = contato;
+        this.isAprovado = isAprovado;
     }
-
-/*
-    public Pessoa criarPessoa(int id_pessoa, TipoPessoa tipoPessoa, String login, String password,
-                              String primeiroNome, String ultimoNome, String email, String contato) {
-        Pessoa p = new Pessoa();
-        p.setId_pessoa(id_pessoa);
-        p.setTipoPessoa(tipoPessoa);
-        p.setLogin(login);
-        p.setPassword(password);
-        p.setPrimeiroNome(primeiroNome);
-        p.setUltimoNome(ultimoNome);
-        p.setEmail(email);
-        p.setContato(contato);
-        return p;
-    }
-*/
 
     //Getters
     public int getId_pessoa() {
@@ -67,7 +55,21 @@ public class Pessoa implements java.io.Serializable {
         return contato;
     }
 
-   public TipoPessoa getTipoPessoa(){return tipoPessoa;}
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
+
+    public static int getContadorPessoa() {
+        return contadorPessoa;
+    }
+
+    public boolean isAprovado() {
+        return isAprovado;
+    }
+
+    public void setAprovado(boolean aprovado) {
+        isAprovado = aprovado;
+    }
 
     //Setters
     public void setId_pessoa(int id_pessoa) {

@@ -1,20 +1,34 @@
 package estg.ipvc.gabrielSousa.menus.base;
+
 import estg.ipvc.gabrielSousa.entidades.MainData;
 
 public abstract class SingleOption {
-    /** Constant static that stores the data to be used by other menus */
+    /**
+     * Constant static that stores the data to be used by other menus
+     */
     private static MainData data;
+    private static final Serialization serialization = new Serialization();
+    private static final DataCheckers dataCheckers = new DataCheckers(data);
+    private static DataFilters dataFilters = new DataFilters(data) ;
 
-    public SingleOption(MainData data){
-        SingleOption.data =data;
-    }
-
-    /** Getters and setters from data */
-    public void setData(MainData data) {
+    public SingleOption(MainData data) {
         SingleOption.data = data;
     }
 
     public MainData getData() {
         return data;
     }
+
+    public Serialization getSerialization(){
+        return serialization;
+    }
+
+    public static DataCheckers getDataCheckers() {
+        return dataCheckers;
+    }
+
+    public static DataFilters getDataFilters() {
+        return dataFilters;
+    }
+
 }
