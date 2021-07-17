@@ -6,19 +6,20 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.GestorSistema;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.cliente.MultiMenu_ClienteHome;
+import estg.ipvc.gabrielSousa.menus.fornecedor.MultiMenu_FornecedorHome;
+import estg.ipvc.gabrielSousa.menus.funcionario.MultiMenu_FuncionarioHome;
 import estg.ipvc.gabrielSousa.menus.gestorSistema.MultiMenu_GestorSistemaHome;
 
 import java.util.Scanner;
 
 public class MultiMenu_Login extends MultiLeveledMenu {
-    private TipoPessoa tipoCurrentUtilizador = new TipoPessoa();
 
     public MultiMenu_Login(MainData data) {
         super(new Menu[]{
                 new SingleMenu_Login(data),
         });
     }
-
 
     @Override
     public void action() {
@@ -28,24 +29,42 @@ public class MultiMenu_Login extends MultiLeveledMenu {
         System.out.println("Introduza a password");
         String password = scanner.nextLine();
 
+
         getData().setCurrentPessoa(null);
 
         try {
-            //Return true if exists
+            //Return true if user exists exists
             if (!getDataCheckers().checkIfLoginAndPasswordExists(login, password)) {
-                throw new Exception();
-            } else if (getData().getCurrentPessoa() instanceof GestorSistema) {
-                System.out.println("Bruh " + getData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
-                        + getData().getCurrentPessoa().getPrimeiroNome() + " " + getData().getCurrentPessoa().getUltimoNome());
-                super.addMenu(new MultiMenu_GestorSistemaHome(getData()));
-
+                throw new Exception("Credencias Inválidas");
+            } else if (!getData().getCurrentPessoa().isAprovado()) {
+                throw new Exception("A conta ainda não foi aprovada");
+            } else {
+                welcomeMessage();
+                switch (getData().getCurrentPessoa().getId_pessoa()) {
+                    case 0 -> {
+                        super.addMenu(new MultiMenu_GestorSistemaHome(getData()));
+                    }
+                    case 1 -> {
+                        super.addMenu(new MultiMenu_FuncionarioHome(getData()));
+                    }
+                    case 2 -> {
+                        super.addMenu(new MultiMenu_FornecedorHome(getData()));
+                    }
+                    case 3 -> {
+                        super.addMenu(new MultiMenu_ClienteHome(getData()));
+                    }
+                }
             }
         } catch (Exception e) {
-            System.out.println("Credencias Inválidas.");
+            System.out.println(e.getMessage());
         }
     }
 
+    public void welcomeMessage() {
+        System.out.println("Bem Vindo " + getData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
+                + getData().getCurrentPessoa().getPrimeiroNome() + " " + getData().getCurrentPessoa().getUltimoNome());
 
+    }
 
     @Override
     public String getName() {
