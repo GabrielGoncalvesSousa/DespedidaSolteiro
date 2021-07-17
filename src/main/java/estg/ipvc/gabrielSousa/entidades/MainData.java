@@ -33,6 +33,8 @@ public class MainData implements java.io.Serializable {
         pessoas.add(new Funcionario( tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
                 , "nunoOliveira@ipvc.pt", "934506842"));
 
+        tpPessoas.add(new TipoPessoa(2, "Fornecedor"));
+        tpPessoas.add(new TipoPessoa(3, "Cliente"));
     }
 
     public ArrayList<Distrito> getDistritos() {
@@ -54,5 +56,11 @@ public class MainData implements java.io.Serializable {
     public Pessoa getCurrentPessoa() {
         return currentPessoa;
     }
+
+    public void registarPessoa(Pessoa p){
+        pessoas.add(p);
+    }
+
+
 
 }

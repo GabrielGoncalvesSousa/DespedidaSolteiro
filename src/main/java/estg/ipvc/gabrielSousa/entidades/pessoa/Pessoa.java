@@ -10,35 +10,21 @@ public class Pessoa implements java.io.Serializable {
     private String email;
     private String contato;
     private static int contadorPessoa;
+    private boolean isAprovado;
 
-    public Pessoa( TipoPessoa tipoPessoa, String login, String password,
-                  String primeiroNome, String ultimoNome, String email, String contato) {
+    public Pessoa(TipoPessoa tipoPessoa, String login, String password,
+                  String primeiroNome, String ultimoNome, String email, String contato,boolean isAprovado) {
         this.id_pessoa = contadorPessoa;
-        contadorPessoa +=1;
+        contadorPessoa += 1;
         this.tipoPessoa = tipoPessoa;
-        this.login =login;
+        this.login = login;
         this.password = password;
         this.primeiroNome = primeiroNome;
         this.ultimoNome = ultimoNome;
         this.email = email;
         this.contato = contato;
+        this.isAprovado = isAprovado;
     }
-
-/*
-    public Pessoa criarPessoa(int id_pessoa, TipoPessoa tipoPessoa, String login, String password,
-                              String primeiroNome, String ultimoNome, String email, String contato) {
-        Pessoa p = new Pessoa();
-        p.setId_pessoa(id_pessoa);
-        p.setTipoPessoa(tipoPessoa);
-        p.setLogin(login);
-        p.setPassword(password);
-        p.setPrimeiroNome(primeiroNome);
-        p.setUltimoNome(ultimoNome);
-        p.setEmail(email);
-        p.setContato(contato);
-        return p;
-    }
-*/
 
     //Getters
     public int getId_pessoa() {
@@ -69,10 +55,20 @@ public class Pessoa implements java.io.Serializable {
         return contato;
     }
 
-   public TipoPessoa getTipoPessoa(){return tipoPessoa;}
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
 
     public static int getContadorPessoa() {
         return contadorPessoa;
+    }
+
+    public boolean isAprovado() {
+        return isAprovado;
+    }
+
+    public void setAprovado(boolean aprovado) {
+        isAprovado = aprovado;
     }
 
     //Setters
@@ -112,7 +108,4 @@ public class Pessoa implements java.io.Serializable {
         return this.login.equals(login) && this.password.equals(password);
     }
 
-    public static void setContadorPessoa(int contadorPessoa) {
-        Pessoa.contadorPessoa = contadorPessoa;
-    }
 }

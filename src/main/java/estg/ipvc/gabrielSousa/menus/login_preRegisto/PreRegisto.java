@@ -3,56 +3,65 @@ package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
-import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleOption;
+import estg.ipvc.gabrielSousa.menus.base.*;
 
 import java.util.Scanner;
 
 public class PreRegisto extends SingleOption implements Menu {
-    private Scanner scanner = new Scanner(System.in);
-
     public PreRegisto(MainData data) {
         super(data);
     }
 
+
     @Override
     public void action() {
         try {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Introduza o Login");
-            String login = scanner.nextLine();
-            checkIfLoginExists(login);
+            RegisterStringGetter registerStringGetter = new RegisterStringGetter();
 
-            System.out.println("Introduza a password");
-            String password = scanner.nextLine();
+            /*Getting login and verifying if exists return true if exists */
+            String login = registerStringGetter.getLogin();
 
-            System.out.println("Introduza o tipo de utilizador");
-            TipoPessoa pessoaRegista = getTipoPessoa();
+            while (getDataCheckers().checkIfLoginExists(login)) {
+                System.out.println("Login ja existe");
+                login = registerStringGetter.getLogin();
+            }
 
-            System.out.println("Introduza o Primeiro Nome");
-            String primeiroNome = scanner.nextLine();
+            //Getting the password String
+            String password = registerStringGetter.getPassword();
 
-            System.out.println("Introduza o Ultimo Nome");
-            String ultimoNome = scanner.nextLine();
+            /*Getting the id selected plus finding the match for the id
+            and returning the corresponding tipoPessoa instance from the list */
+            getDataFilters().getTiposParaPreRegisto();
+            int id = registerStringGetter.getTipoUtilizador();
+            while (id != 2 && id != 3) {
+                System.out.print("Opção Inválida. ");
+                id = registerStringGetter.getTipoUtilizador();
+            }
+            TipoPessoa tipoPessoa = getDataFilters().getTipoPessoaSelecionadaParaRegisto(id);
 
-            System.out.println("Introduza o Email");
-            String email = scanner.nextLine();
-            checkIfMailExists(email);
+            //Getting First Name
+            String primeiroNome = registerStringGetter.getPrimeiroNome();
 
-            System.out.println("Introduza o seu contato");
-            String contato =scanner.nextLine();
+            //Geting Last Name
+            String ulimoNome = registerStringGetter.getUltimoNome();
 
-            Pessoa p = new Pessoa(pessoaRegista,login,password,primeiroNome,ultimoNome,email,contato);
+            //Getting email and verifying if exists return true if exists
+            String email = registerStringGetter.getMail();
+            while (getDataCheckers().checkIfMailExists(email)) {
+                email = registerStringGetter.getMail();
+                getDataCheckers().checkIfMailExists(email);
+            }
+
+            //getting contato
+            String contato = registerStringGetter.getContato();
+
+            Pessoa p = new Pessoa(tipoPessoa, login, password, primeiroNome, ulimoNome,
+                    email, contato, false);
+
             getData().getPessoas().add(p);
 
         } catch (Exception e) {
-
-        }
-
-        for (Pessoa pessoa: getData().getPessoas()){
-            System.out.println("ID - " + pessoa.getId_pessoa() + " Tp Util - " + pessoa.getTipoPessoa().getNomeTipoPessoa()
-            + " Nome Pessoa - " + pessoa.getPrimeiroNome());
-
+            System.out.println(e.getMessage());
         }
 
     }
@@ -62,53 +71,48 @@ public class PreRegisto extends SingleOption implements Menu {
         return "Registar";
     }
 
-    public boolean checkIfLoginExists(String login) {
-        try {
-            for (Pessoa p : getData().getPessoas()) {
-                if (p.getLogin().equals(login)) {
-                    throw new Exception();
-                }
-            }
 
-        } catch (Exception e) {
-            System.out.println("Login já utilizado.");
-            return false;
-        }
+}
 
-        return true;
+class RegisterStringGetter {
+    private final Scanner scanner = new Scanner(System.in);
+
+    public String getLogin() {
+        System.out.println("Introduza o Login");
+        return scanner.nextLine();
     }
 
-    public boolean checkIfMailExists(String mail) {
-        try {
-            for (Pessoa p : getData().getPessoas()) {
-                if (p.getEmail().equals(mail)) {
-                    throw new Exception();
-                }
-            }
-
-        } catch (Exception e) {
-            System.out.println("Mail já utilizado.");
-            return false;
-        }
-
-        return true;
+    public String getPassword() {
+        System.out.println("Introduza a password");
+        return scanner.nextLine();
     }
 
-    public TipoPessoa getTipoPessoa() {
-        TipoPessoa pessoaRegistar = null;
+    public String getPrimeiroNome() {
+        System.out.println("Introduza o Primeiro Nome");
+        return scanner.nextLine();
+    }
 
-        for (TipoPessoa tp : getData().getTpPessoas()) {
-            System.out.println(tp.getId_tipoPessoa() + " - " + tp.getNomeTipoPessoa());
-        }
+    public String getUltimoNome() {
+        System.out.println("Introduza o Ultimo Nome");
+        return scanner.nextLine();
 
-        int idTipoPessoa = scanner.nextInt();
+    }
 
-        for (TipoPessoa tp : getData().getTpPessoas()) {
-            if (tp.getId_tipoPessoa() == idTipoPessoa) {
-                pessoaRegistar = tp;
-            }
-        }
-        return pessoaRegistar;
+    public String getMail() {
+        System.out.println("Introduza o Email");
+        return scanner.nextLine();
+    }
+
+    public int getTipoUtilizador() {
+        System.out.println("Introduza o tipo de utilizador");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    public String getContato() {
+        System.out.println("Introduza o seu contato");
+        return scanner.nextLine();
     }
 
 }
+
+
