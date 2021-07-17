@@ -5,16 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a8e491-81f3-4a63-8ad8-7775ab85a7aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataCheckers.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/Serialization.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/Serialization.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/SingleOption.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/SingleOption.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/PreRegisto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/PreRegisto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/PreRegisto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/PreRegisto.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/target/classes/data.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +49,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="development/features/Menus/Login" />
+                    <option name="lastUsedInstant" value="1626540797" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="development/features/Menus/Register" />
                     <option name="lastUsedInstant" value="1626470000" />
                   </RecentBranch>
@@ -65,10 +67,6 @@
                   <RecentBranch>
                     <option name="branchName" value="development/features/Fixing" />
                     <option name="lastUsedInstant" value="1626463283" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="main" />
-                    <option name="lastUsedInstant" value="1626457045" />
                   </RecentBranch>
                 </list>
               </option>
@@ -89,7 +87,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/Prog2EpocaEspecial-fixing_marcacao_class" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cmd_menus" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -109,13 +107,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -131,7 +131,8 @@
       <updated>1626455766098</updated>
       <workItem from="1626455768135" duration="914000" />
       <workItem from="1626456817236" duration="11167000" />
-      <workItem from="1626481235661" duration="6000000" />
+      <workItem from="1626481235661" duration="10282000" />
+      <workItem from="1626535260863" duration="12721000" />
     </task>
     <servers />
   </component>

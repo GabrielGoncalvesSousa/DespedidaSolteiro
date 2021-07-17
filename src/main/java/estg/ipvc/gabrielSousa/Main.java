@@ -3,7 +3,7 @@ package estg.ipvc.gabrielSousa;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.menus.base.Serialization;
-import estg.ipvc.gabrielSousa.menus.login_preRegisto.MainMenu;
+import estg.ipvc.gabrielSousa.menus.login_preRegisto.MultiMenu_MainMenu;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,7 +14,7 @@ public class Main {
         serialization.saveData(data);
 
       /*  MainData data = serialization.loadData();*/
-        MainMenu mainMenu = new MainMenu(data);
-        mainMenu.run();
+        MultiMenu_MainMenu multiMenuMainMenu = new MultiMenu_MainMenu(data);
+        multiMenuMainMenu.run();
     }
 }

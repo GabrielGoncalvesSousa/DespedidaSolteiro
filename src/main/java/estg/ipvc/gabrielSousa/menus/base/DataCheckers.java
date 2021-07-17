@@ -3,7 +3,7 @@ package estg.ipvc.gabrielSousa.menus.base;
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 
-public class DataCheckers extends SingleOption {
+public class DataCheckers extends SingleLeveledMenu {
 
     public DataCheckers(MainData data) {
         super(data);
@@ -35,4 +35,20 @@ public class DataCheckers extends SingleOption {
         }
         return false;
     }
+
+    public boolean checkIfLoginAndPasswordExists(String login, String password) {
+        try {
+            for (Pessoa p : getData().getPessoas()) {
+                if (p.login(login, password)) {
+                   getData().setCurrentPessoa(p);
+                   return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
 }

@@ -4,6 +4,10 @@ public class TipoPessoa implements java.io.Serializable {
     private int id_tipoPessoa;
     private String nomeTipoPessoa;
 
+    public TipoPessoa(){
+
+    }
+
     public TipoPessoa(int id_tipoPessoa, String nomeTipoPessoa){
         this.id_tipoPessoa=id_tipoPessoa;
         this.nomeTipoPessoa=nomeTipoPessoa;
