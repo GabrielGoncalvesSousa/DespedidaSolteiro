@@ -1,8 +1,6 @@
 package estg.ipvc.gabrielSousa.menus.gestorSistema;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
-import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
-import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
 
