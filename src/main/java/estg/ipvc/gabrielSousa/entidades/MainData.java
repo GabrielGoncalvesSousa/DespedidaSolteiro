@@ -93,4 +93,12 @@ public class MainData implements java.io.Serializable {
     public ArrayList<Marcacao> getMarcacoes() {
         return marcacoes;
     }
+
+    public ArrayList<ServicoEmpresa> getServicoEmpresas() {
+        return servicoEmpresas;
+    }
+
+    public ArrayList<EstadoMarcacao> getEstadoMarcacaos() {
+        return estadoMarcacaos;
+    }
 }

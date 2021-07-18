@@ -41,7 +41,7 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
 
     public boolean optionChecker(ArrayList<Pessoa> pessoasNaoProvadas) {
         try {
-            System.out.print("\nEscolha um utilizador a aprovar: ");
+            System.out.print("Escolha um utilizador a aprovar: ");
             int id = Integer.parseInt(scanner.nextLine());
 
             for (Pessoa p : pessoasNaoProvadas) {
@@ -52,7 +52,7 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
                 }
             }
 
-            throw new Exception("\nOpção Inválida.\n");
+            throw new Exception("\nOpção Inválida.");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

@@ -1,6 +1,7 @@
 package estg.ipvc.gabrielSousa.menus.base;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
@@ -44,7 +45,7 @@ public class DataFilters extends SingleLeveledMenu {
             }
 
             if (!pessoasNaoProvadas.isEmpty()) {
-                System.out.println(pessoasNaoProvadas.listIterator().next().toString());
+                pessoasNaoProvadas.stream().forEach(pessoa -> System.out.println(pessoa.toString()));
                 return pessoasNaoProvadas;
             }
 
@@ -53,5 +54,26 @@ public class DataFilters extends SingleLeveledMenu {
 
         }
         return pessoasNaoProvadas;
+    }
+
+    public ArrayList<ServicoEmpresa> getContasServicosEmpresaParaAprovar() {
+        ArrayList<ServicoEmpresa> servicosNaoAprovados = new ArrayList<>();
+
+        try {
+            for (ServicoEmpresa se : getData().getServicoEmpresas()) {
+                if (!se.isAprovado()) {
+                    servicosNaoAprovados.add(se);
+                }
+            }
+
+            if (!servicosNaoAprovados.isEmpty()) {
+                servicosNaoAprovados.stream().forEach(servico -> System.out.println(servico.toString())); ;
+                return servicosNaoAprovados;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return servicosNaoAprovados;
     }
 }

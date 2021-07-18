@@ -13,7 +13,7 @@ public class Pessoa implements java.io.Serializable {
     private boolean isAprovado;
 
     public Pessoa(TipoPessoa tipoPessoa, String login, String password,
-                  String primeiroNome, String ultimoNome, String email, String contato,boolean isAprovado) {
+                  String primeiroNome, String ultimoNome, String email, String contato, boolean isAprovado) {
         this.id_pessoa = contadorPessoa;
         contadorPessoa += 1;
         this.tipoPessoa = tipoPessoa;
@@ -109,10 +109,11 @@ public class Pessoa implements java.io.Serializable {
     }
 
     @Override
-    public String toString(){
-        String s=("Utilizador nº "+this.id_pessoa
-        +"\n\tNome - "+ this.primeiroNome.concat(" "+this.ultimoNome)+
-                "\n\tEmail - " +this.email+"\n\tContato- "+this.contato);
+    public String toString() {
+        String s = ("Utilizador nº " + this.id_pessoa
+                + "\n\tNome - " + this.primeiroNome.concat(" " + this.ultimoNome)
+                + "\n\tEmail - " + this.email
+                + "\n\tContato - " + this.contato + "\n");
         return s;
     }
 
