@@ -3,14 +3,19 @@ package estg.ipvc.gabrielSousa.menus.cliente;
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
-import estg.ipvc.gabrielSousa.menus.gestorSistema.SingleMenu_AprovarPreRegisto;
+import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_AprovarPreRegisto;
+import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_AvaliarServico;
+import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_CriarMarcacao;
+import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_VerEstadoMarcacao;
 
 
 public class MultiMenu_ClienteHome extends MultiLeveledMenu {
 
     public MultiMenu_ClienteHome(MainData data) {
         super(new Menu[]{
-                new SingleMenu_AprovarPreRegisto(data)
+                new SingleMenu_CriarMarcacao(data),
+                new SingleMenu_VerEstadoMarcacao(data),
+                new SingleMenu_AvaliarServico(data)
         });
         super.setData(data);
     }

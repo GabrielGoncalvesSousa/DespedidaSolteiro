@@ -1,10 +1,14 @@
 package estg.ipvc.gabrielSousa.menus.base;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
+import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
+import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DataFilters extends SingleLeveledMenu {
     public DataFilters(MainData data) {
@@ -44,7 +48,7 @@ public class DataFilters extends SingleLeveledMenu {
             }
 
             if (!pessoasNaoProvadas.isEmpty()) {
-                System.out.println(pessoasNaoProvadas.listIterator().next().toString());
+                pessoasNaoProvadas.forEach(pessoa -> System.out.println(pessoa.toString()));
                 return pessoasNaoProvadas;
             }
 
@@ -53,5 +57,72 @@ public class DataFilters extends SingleLeveledMenu {
 
         }
         return pessoasNaoProvadas;
+    }
+
+    public ArrayList<ServicoEmpresa> getContasServicosEmpresaParaAprovar() {
+        ArrayList<ServicoEmpresa> servicosNaoAprovados = new ArrayList<>();
+
+        try {
+            for (ServicoEmpresa se : getData().getServicoEmpresas()) {
+                if (!se.isAprovado()) {
+                    servicosNaoAprovados.add(se);
+                }
+            }
+
+            if (!servicosNaoAprovados.isEmpty()) {
+                servicosNaoAprovados.forEach(servico -> System.out.println(servico.toString()));
+                ;
+                return servicosNaoAprovados;
+            }
+
+        } catch (Exception e) {
+
+        }
+        return servicosNaoAprovados;
+    }
+
+
+    public boolean getAllClientInfo() {
+        ArrayList<Pessoa> pessoaClientes = new ArrayList<>();
+
+
+        //Getting all clients
+        getData().getPessoas().forEach(pessoa -> {
+            if (pessoa instanceof Cliente && pessoa.isAprovado()) {
+                pessoaClientes.add(pessoa);
+            }
+        });
+
+        //if there are no clients
+        if (pessoaClientes.isEmpty()) {
+            System.out.println("Não existem clientes de momento.");
+            return false;
+        }
+
+        AtomicInteger totalGasto = new AtomicInteger();
+        //Looping through clients
+        pessoaClientes.forEach(cliente -> {
+            System.out.println(cliente.toString());
+            ArrayList<Marcacao> marcacoesClientes = new ArrayList<>();
+
+            //Buscar marcacoes do respetivo cliente
+            getData().getMarcacoes().forEach(marcacao -> {
+                if (marcacao.getCliente() == cliente) {
+
+                    System.out.println(marcacao.toString());
+                    totalGasto.addAndGet(marcacao.getServicoEmpresa().getPrecoComIva());
+                    marcacoesClientes.add(marcacao);
+                }
+            });
+
+            if (marcacoesClientes.isEmpty()) {
+                System.out.println("\n\tCliente sem Marcações Realizadas");
+            } else {
+                System.out.println("\n\tTotal Gasto - " + totalGasto);
+            }
+
+
+        });
+        return true;
     }
 }

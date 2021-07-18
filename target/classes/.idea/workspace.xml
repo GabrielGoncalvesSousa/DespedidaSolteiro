@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a8e491-81f3-4a63-8ad8-7775ab85a7aa" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/TipoPessoa.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/MultiLeveledMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_Login.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/MultiMenu_MainMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/login_preRegisto/SingleMenu_Login.class" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_VerInfoCliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_VerInfoCliente.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/data.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmppresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/MainData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/MainData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/base/DataFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/base/DataFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,16 +61,16 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="development/features/Menus/GestorSistema" />
+                    <option name="lastUsedInstant" value="1626561572" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="development/features/Menus/Login" />
                     <option name="lastUsedInstant" value="1626540797" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="development/features/Menus/Register" />
                     <option name="lastUsedInstant" value="1626470000" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="development/features/Menus/GestorSistema" />
-                    <option name="lastUsedInstant" value="1626466521" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="development/mainDevelopment" />
@@ -88,10 +100,19 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/cmd_menus" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="build.tools" />
+    <property name="settings.editor.selected.configurable" value="inlay.hints.JAVA" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="estg.ipvc.gabrielSousa.menus.gestorSistema" />
+      <recent name="estg.ipvc.gabrielSousa.menus.cliente" />
+      <recent name="estg.ipvc.gabrielSousa.menus.fornecedor" />
+      <recent name="estg.ipvc.gabrielSousa.menus.funcionario" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" nameIsGenerated="true">
@@ -107,15 +128,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -132,7 +151,8 @@
       <workItem from="1626455768135" duration="914000" />
       <workItem from="1626456817236" duration="11167000" />
       <workItem from="1626481235661" duration="10282000" />
-      <workItem from="1626535260863" duration="12721000" />
+      <workItem from="1626535260863" duration="25339000" />
+      <workItem from="1626612005412" duration="8394000" />
     </task>
     <servers />
   </component>

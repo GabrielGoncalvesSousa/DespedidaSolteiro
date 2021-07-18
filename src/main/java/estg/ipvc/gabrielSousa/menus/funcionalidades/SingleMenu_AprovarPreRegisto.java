@@ -1,4 +1,4 @@
-package estg.ipvc.gabrielSousa.menus.gestorSistema;
+package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
@@ -24,9 +24,11 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
                 throw new Exception("Não existem contas aguardado aprovação.");
             }
 
-            while (!optionChecker(pessoasNaoProvadas)) {
-                optionChecker(pessoasNaoProvadas);
-            }
+            boolean verifier;
+            do{
+                verifier =optionChecker(pessoasNaoProvadas);
+            } while (!verifier);
+
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -41,7 +43,7 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
 
     public boolean optionChecker(ArrayList<Pessoa> pessoasNaoProvadas) {
         try {
-            System.out.print("\nEscolha um utilizador a aprovar: ");
+            System.out.print("Escolha um utilizador a aprovar: ");
             int id = Integer.parseInt(scanner.nextLine());
 
             for (Pessoa p : pessoasNaoProvadas) {
@@ -52,7 +54,7 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
                 }
             }
 
-            throw new Exception("\nOpção Inválida.\n");
+            throw new Exception("\nOpção Inválida.");
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
