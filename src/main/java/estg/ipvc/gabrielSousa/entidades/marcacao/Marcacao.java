@@ -10,14 +10,17 @@ public class Marcacao implements java.io.Serializable {
     private ServicoEmpresa servicoEmpresa;
     private int pontuacao;
     private static int contador;
+    private String data;
 
-    public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa, int pontuacao) {
+    public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa, int pontuacao,
+                    String data) {
         this.id_marcacao=contador;
         contador+=1;
         this.cliente=cliente;
         this.estadoMarcacao = estadoMarcacao;
         this.servicoEmpresa = servicoEmpresa;
         this.pontuacao=pontuacao;
+        this.data=data;
     }
 
     public EstadoMarcacao getEstadoMarcacao() {
@@ -52,6 +55,10 @@ public class Marcacao implements java.io.Serializable {
         this.pontuacao = pontuacao;
     }
 
+    public String getData() {
+        return data;
+    }
+
     @Override
     public String toString(){
         String marcacao = ("\n\tMarcação nº "+this.id_marcacao
@@ -61,6 +68,7 @@ public class Marcacao implements java.io.Serializable {
                 +" no Distrito de "+this.getServicoEmpresa().getLocalidade().getDistrito().getNomeDistrito()
                 +"\n\t\t Preço do Serviço - "+this.getServicoEmpresa().getPrecoComIva()
                 +"\n\t\t Duração do Serviço - "+this.getServicoEmpresa().getDuracao()
+                +"\n\t\t Data - "+this.getData()
                 );
         if (this.pontuacao!=0){
             marcacao+=("\n\t\t Pontuação do Serviço - "+this.getPontuacao());
