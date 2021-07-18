@@ -1,4 +1,4 @@
-package estg.ipvc.gabrielSousa.menus.gestorSistema;
+package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
