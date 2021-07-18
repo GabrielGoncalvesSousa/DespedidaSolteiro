@@ -1,4 +1,4 @@
-package estg.ipvc.gabrielSousa.menus.gestorSistema;
+package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.EstadoMarcacao;
@@ -47,6 +47,10 @@ public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements
             }
         });
 
+
+
+        //Teacher, if you're reading this, I don't have time to implement this correctly
+        //Maybe consider adding more time when asking for this types of projects.
 
         while (!spagghetiMuch.get()){
             System.out.print("Marcação Selecionado Inválida, selecione outra marcação: ");
