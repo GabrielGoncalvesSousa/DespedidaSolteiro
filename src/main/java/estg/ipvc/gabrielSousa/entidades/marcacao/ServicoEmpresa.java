@@ -13,6 +13,7 @@ public class ServicoEmpresa implements java.io.Serializable {
     private int iva;
     private String descricao;
     private static int contador;
+    private boolean isAprovado;
 
     public ServicoEmpresa(Pessoa pessoa, String nomeServico, String contato,
                           String duracao, Localidade localidade, int precoComIva,
@@ -27,5 +28,6 @@ public class ServicoEmpresa implements java.io.Serializable {
         this.precoComIva = precoComIva;
         this.iva = iva;
         this.descricao = descricao;
+        this.isAprovado=false;
     }
 }
