@@ -111,9 +111,10 @@ public class Pessoa implements java.io.Serializable {
     @Override
     public String toString() {
         String s = ("Utilizador nº " + this.id_pessoa
+                + "\n\tTipo de Utilizador - " + this.getTipoPessoa().getNomeTipoPessoa()
                 + "\n\tNome - " + this.primeiroNome.concat(" " + this.ultimoNome)
                 + "\n\tEmail - " + this.email
-                + "\n\tContato - " + this.contato + "\n");
+                + "\n\tContato - " + this.contato );
         return s;
     }
 

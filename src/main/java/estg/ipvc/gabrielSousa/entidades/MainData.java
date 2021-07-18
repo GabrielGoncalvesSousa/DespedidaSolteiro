@@ -43,6 +43,9 @@ public class MainData implements java.io.Serializable {
         pessoas.add(new Cliente(tpPessoas.get(3), "cliente", "123", "Cliente", "Banana"
                 , "banana@ipvc.pt", "93453295"));
 
+        pessoas.add(new Cliente(tpPessoas.get(3), "cliente", "123", "ClienteSemMarcacoes", "Banana"
+                , "clienteSemMarcacoes@ipvc.pt", "93453295"));
+
         //Popular localidades de viana
         localidades.add(new Localidade("4900-764",distritos.get(0),"Rua Abade Fanha"));
         localidades.add(new Localidade("4900-267",distritos.get(0),"Beco do Mosteiro"));
@@ -58,7 +61,9 @@ public class MainData implements java.io.Serializable {
         estadoMarcacaos.add(new EstadoMarcacao(2,"Concluido"));
 
         //Popular marcacoes
-        marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(0), servicoEmpresas.get(0)));
+        marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(0), servicoEmpresas.get(0), 0));
+        marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(2), servicoEmpresas.get(0), 3));
+        marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(2), servicoEmpresas.get(0), 3));
 
     }
 

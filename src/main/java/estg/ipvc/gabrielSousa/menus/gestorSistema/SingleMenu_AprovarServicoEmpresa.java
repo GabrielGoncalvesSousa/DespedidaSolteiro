@@ -25,9 +25,10 @@ public class SingleMenu_AprovarServicoEmpresa extends SingleLeveledMenu implemen
                 throw new Exception("Não existem serviços aguardando aprovação.");
             }
 
+            boolean verifier;
             do {
-                optionChecker(servicosNaoAprovados);
-            } while (!optionChecker(servicosNaoAprovados));
+                verifier=optionChecker(servicosNaoAprovados);
+            } while (!verifier);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

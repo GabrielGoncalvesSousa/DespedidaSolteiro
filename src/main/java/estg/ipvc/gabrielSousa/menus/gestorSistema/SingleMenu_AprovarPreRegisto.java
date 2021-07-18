@@ -24,9 +24,10 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
                 throw new Exception("Não existem contas aguardado aprovação.");
             }
 
-            do {
-                optionChecker(pessoasNaoProvadas);
-            }while (!optionChecker(pessoasNaoProvadas));
+            boolean verifier;
+            do{
+                verifier =optionChecker(pessoasNaoProvadas);
+            } while (!verifier);
 
 
         } catch (Exception e) {

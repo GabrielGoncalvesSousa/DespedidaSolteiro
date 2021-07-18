@@ -60,4 +60,20 @@ public class ServicoEmpresa implements java.io.Serializable {
     public void setAprovado(boolean aprovado) {
         isAprovado = aprovado;
     }
+
+    public Localidade getLocalidade() {
+        return localidade;
+    }
+
+    public String getNomeServico() {
+        return nomeServico;
+    }
+
+    public String getDuracao() {
+        return duracao;
+    }
+
+    public int getPrecoComIva() {
+        return precoComIva;
+    }
 }

@@ -5,14 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b7a8e491-81f3-4a63-8ad8-7775ab85a7aa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmppresa.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_VerInfoCliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_VerInfoCliente.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/data.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmppresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/data.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/MainData.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/MainData.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/Marcacao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/base/DataFilters.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/base/DataFilters.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +128,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -129,7 +152,7 @@
       <workItem from="1626456817236" duration="11167000" />
       <workItem from="1626481235661" duration="10282000" />
       <workItem from="1626535260863" duration="25339000" />
-      <workItem from="1626612005412" duration="2816000" />
+      <workItem from="1626612005412" duration="8394000" />
     </task>
     <servers />
   </component>

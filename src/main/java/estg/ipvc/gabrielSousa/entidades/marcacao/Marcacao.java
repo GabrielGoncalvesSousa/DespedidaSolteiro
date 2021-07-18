@@ -11,12 +11,13 @@ public class Marcacao implements java.io.Serializable {
     private int pontuacao;
     private static int contador;
 
-    public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa) {
+    public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa, int pontuacao) {
         this.id_marcacao=contador;
         contador+=1;
         this.cliente=cliente;
         this.estadoMarcacao = estadoMarcacao;
         this.servicoEmpresa = servicoEmpresa;
+        this.pontuacao=pontuacao;
     }
 
     public EstadoMarcacao getEstadoMarcacao() {
@@ -41,5 +42,33 @@ public class Marcacao implements java.io.Serializable {
 
     public void setServicoEmpresa(ServicoEmpresa servicoEmpresa) {
         this.servicoEmpresa = servicoEmpresa;
+    }
+
+    public int getPontuacao() {
+        return pontuacao;
+    }
+
+    public void setPontuacao(int pontuacao) {
+        this.pontuacao = pontuacao;
+    }
+
+    @Override
+    public String toString(){
+        String marcacao = ("\n\tMarcação nº "+this.id_marcacao
+                +"\n\t\t Empresa da Marcação - "+ this.servicoEmpresa.getNomeServico()
+                +"\n\t\t Estado da Marcação - "+this.getEstadoMarcacao().getNomeEstadoMarcacao()
+                +"\n\t\t Localização da Marcação - "+this.getServicoEmpresa().getLocalidade().getNomeLocalidade()
+                +" no Distrito de "+this.getServicoEmpresa().getLocalidade().getDistrito().getNomeDistrito()
+                +"\n\t\t Preço do Serviço - "+this.getServicoEmpresa().getPrecoComIva()
+                +"\n\t\t Duração do Serviço - "+this.getServicoEmpresa().getDuracao()
+                );
+        if (this.pontuacao!=0){
+            marcacao+=("\n\t\t Pontuação do Serviço - "+this.getPontuacao());
+        }
+        return marcacao;
+    }
+
+    public Pessoa getCliente() {
+        return cliente;
     }
 }
