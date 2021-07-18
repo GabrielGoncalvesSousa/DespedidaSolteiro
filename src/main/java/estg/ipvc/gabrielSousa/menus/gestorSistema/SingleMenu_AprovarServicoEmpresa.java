@@ -1,6 +1,7 @@
 package estg.ipvc.gabrielSousa.menus.gestorSistema;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
@@ -8,27 +9,26 @@ import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements Menu {
+public class SingleMenu_AprovarServicoEmpresa extends SingleLeveledMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
 
-    public SingleMenu_AprovarPreRegisto(MainData data) {
+    public SingleMenu_AprovarServicoEmpresa(MainData data) {
         super(data);
     }
 
     @Override
     public void action() {
         try {
-            ArrayList<Pessoa> pessoasNaoProvadas = getDataFilters().getContasParaAprovar();
+            ArrayList<ServicoEmpresa> servicosNaoAprovados = getDataFilters().getContasServicosEmpresaParaAprovar();
 
-            if (pessoasNaoProvadas.isEmpty()) {
-                throw new Exception("Não existem contas aguardado aprovação.");
+            if (servicosNaoAprovados.isEmpty()) {
+                throw new Exception("Não existem serviços aguardando aprovação.");
             }
 
             boolean verifier;
-            do{
-                verifier =optionChecker(pessoasNaoProvadas);
+            do {
+                verifier=optionChecker(servicosNaoAprovados);
             } while (!verifier);
-
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -38,18 +38,18 @@ public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements M
 
     @Override
     public String getName() {
-        return "Aprovar Pré-Registos.";
+        return "Aprovar Serviços de Empresa.";
     }
 
-    public boolean optionChecker(ArrayList<Pessoa> pessoasNaoProvadas) {
+    public boolean optionChecker(ArrayList<ServicoEmpresa> servicosNaoAprovados) {
         try {
-            System.out.print("Escolha um utilizador a aprovar: ");
+            System.out.print("Escolha um serviço a aprovar: ");
             int id = Integer.parseInt(scanner.nextLine());
 
-            for (Pessoa p : pessoasNaoProvadas) {
-                if (p.getId_pessoa() == id) {
-                    p.setAprovado(true);
-                    System.out.println("\nUtilizador Aprovado com sucesso.");
+            for (ServicoEmpresa se : servicosNaoAprovados) {
+                if (se.getId_servicoEmpresa() == id) {
+                    se.setAprovado(true);
+                    System.out.println("\nServiço Aprovado com Sucesso.");
                     return true;
                 }
             }
