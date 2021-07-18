@@ -16,6 +16,7 @@ public class MainData implements java.io.Serializable {
     private Pessoa currentPessoa;
 
     public MainData() {
+        //Adicionar Popular classe distritos
         String[] nomesDistritos = {"Viana do Castelo", "Braga", "Porto", "Vila Real", "Bragança", "Porto", "Aveiro", "Viseu", "Guarda",
                 "Coimbra", "Castelo Branco", "Leiria", "Lisboa", "Santarém", "Portalegre", "Évora", "Setubal", "Beja", "Faro", "Madeira",
                 "Açores"};
@@ -25,16 +26,22 @@ public class MainData implements java.io.Serializable {
             distritos.add(d);
         }
 
+        //Popular os tipos de pessoa
         tpPessoas.add(new TipoPessoa(0, "Gestor de Sistema"));
-        pessoas.add(new GestorSistema( tpPessoas.get(0), "login", "123", "Gabriel", "Sousa"
-                , "gabrielsousa@ipvc.pt", "915875985"));
-
         tpPessoas.add(new TipoPessoa(1, "Funcionario"));
-        pessoas.add(new Funcionario( tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
-                , "nunoOliveira@ipvc.pt", "934506842"));
-
         tpPessoas.add(new TipoPessoa(2, "Fornecedor"));
         tpPessoas.add(new TipoPessoa(3, "Cliente"));
+
+        //Contas exemplo
+        pessoas.add(new GestorSistema(tpPessoas.get(0), "login", "123", "Gabriel", "Sousa"
+                , "gabrielsousa@ipvc.pt", "915875985"));
+        pessoas.add(new Funcionario(tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
+                , "nunoOliveira@ipvc.pt", "934506842"));
+        pessoas.add(new Cliente(tpPessoas.get(3), "cliente", "123", "Cliente", "Banana"
+                , "banana@ipvc.pt", "93453295"));
+
+        //Popular localidades
+        localidades.add(new Localidade())
     }
 
     public ArrayList<Distrito> getDistritos() {
@@ -57,10 +64,9 @@ public class MainData implements java.io.Serializable {
         return currentPessoa;
     }
 
-    public void registarPessoa(Pessoa p){
+    public void registarPessoa(Pessoa p) {
         pessoas.add(p);
     }
-
 
 
 }
