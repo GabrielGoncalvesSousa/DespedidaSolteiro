@@ -10,7 +10,7 @@ public class MultiMenu_GestorSistemaHome extends MultiLeveledMenu {
     public MultiMenu_GestorSistemaHome(MainData data) {
         super(new Menu[]{
                 new SingleMenu_AprovarPreRegisto(data),
-                new SingleMenu_AprovarServicoEmppresa(data)
+                new SingleMenu_AprovarServicoEmpresa(data)
         });
         super.setData(data);
     }

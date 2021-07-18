@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="b7a8e491-81f3-4a63-8ad8-7775ab85a7aa" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarServicoEmppresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data.ser" beforeDir="false" afterPath="$PROJECT_DIR$/data.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/MainData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/marcacao/ServicoEmpresa.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/entidades/pessoa/Pessoa.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/base/DataFilters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/MultiMenu_GestorSistemaHome.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/estg/ipvc/gabrielSousa/menus/gestorSistema/SingleMenu_AprovarPreRegisto.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +129,7 @@
       <workItem from="1626456817236" duration="11167000" />
       <workItem from="1626481235661" duration="10282000" />
       <workItem from="1626535260863" duration="25339000" />
-      <workItem from="1626612005412" duration="1485000" />
+      <workItem from="1626612005412" duration="2816000" />
     </task>
     <servers />
   </component>

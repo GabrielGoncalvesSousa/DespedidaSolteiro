@@ -9,10 +9,10 @@ import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SingleMenu_AprovarServicoEmppresa extends SingleLeveledMenu implements Menu {
+public class SingleMenu_AprovarServicoEmpresa extends SingleLeveledMenu implements Menu {
     private Scanner scanner = new Scanner(System.in);
 
-    public SingleMenu_AprovarServicoEmppresa(MainData data) {
+    public SingleMenu_AprovarServicoEmpresa(MainData data) {
         super(data);
     }
 
@@ -25,9 +25,9 @@ public class SingleMenu_AprovarServicoEmppresa extends SingleLeveledMenu impleme
                 throw new Exception("Não existem serviços aguardando aprovação.");
             }
 
-            while (!optionChecker(servicosNaoAprovados)) {
+            do {
                 optionChecker(servicosNaoAprovados);
-            }
+            } while (!optionChecker(servicosNaoAprovados));
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
