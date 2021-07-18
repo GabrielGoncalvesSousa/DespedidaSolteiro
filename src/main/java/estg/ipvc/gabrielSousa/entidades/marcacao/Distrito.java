@@ -3,9 +3,11 @@ package estg.ipvc.gabrielSousa.entidades.marcacao;
 public class Distrito implements java.io.Serializable {
     private int id_distrito;
     private String nomeDistrito;
+    private static int contador;
 
-    public Distrito(int id_distrito, String nomeDistrito) {
-        this.id_distrito = id_distrito;
+    public Distrito(String nomeDistrito) {
+        this.id_distrito = contador;
+        contador += 1;
         this.nomeDistrito = nomeDistrito;
     }
 

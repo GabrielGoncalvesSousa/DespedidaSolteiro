@@ -1,9 +1,23 @@
 package estg.ipvc.gabrielSousa.entidades.marcacao;
 
+import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
+import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
+
 public class Marcacao implements java.io.Serializable {
     private int id_marcacao;
+    private Pessoa cliente;
     private EstadoMarcacao estadoMarcacao;
     private ServicoEmpresa servicoEmpresa;
+    private int pontuacao;
+    private static int contador;
+
+    public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa) {
+        this.id_marcacao=contador;
+        contador+=1;
+        this.cliente=cliente;
+        this.estadoMarcacao = estadoMarcacao;
+        this.servicoEmpresa = servicoEmpresa;
+    }
 
     public EstadoMarcacao getEstadoMarcacao() {
         return estadoMarcacao;

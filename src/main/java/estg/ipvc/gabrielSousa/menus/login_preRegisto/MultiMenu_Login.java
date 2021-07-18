@@ -29,7 +29,6 @@ public class MultiMenu_Login extends MultiLeveledMenu {
         System.out.println("Introduza a password");
         String password = scanner.nextLine();
 
-
         getData().setCurrentPessoa(null);
 
         try {

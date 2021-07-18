@@ -1,7 +1,10 @@
 package estg.ipvc.gabrielSousa.menus.base;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
+import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
+
+import java.util.ArrayList;
 
 public class DataFilters extends SingleLeveledMenu {
     public DataFilters(MainData data) {
@@ -16,10 +19,10 @@ public class DataFilters extends SingleLeveledMenu {
         }
     }
 
-    public TipoPessoa getTipoPessoaSelecionadaParaRegisto(int id_tp){
+    public TipoPessoa getTipoPessoaSelecionadaParaRegisto(int id_tp) {
         try {
             for (TipoPessoa tipoPessoa : getData().getTpPessoas()) {
-                if (tipoPessoa.getId_tipoPessoa() ==id_tp ) {
+                if (tipoPessoa.getId_tipoPessoa() == id_tp) {
                     return tipoPessoa;
                 }
             }
@@ -28,5 +31,27 @@ public class DataFilters extends SingleLeveledMenu {
             System.out.println(e.getMessage());
         }
         return null;
+    }
+
+    public ArrayList<Pessoa> getContasParaAprovar() {
+        ArrayList<Pessoa> pessoasNaoProvadas = new ArrayList<>();
+
+        try {
+            for (Pessoa p : getData().getPessoas()) {
+                if (!p.isAprovado()) {
+                    pessoasNaoProvadas.add(p);
+                }
+            }
+
+            if (!pessoasNaoProvadas.isEmpty()) {
+                System.out.println(pessoasNaoProvadas.listIterator().next().toString());
+                return pessoasNaoProvadas;
+            }
+
+
+        } catch (Exception e) {
+
+        }
+        return pessoasNaoProvadas;
     }
 }

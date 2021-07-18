@@ -108,4 +108,12 @@ public class Pessoa implements java.io.Serializable {
         return this.login.equals(login) && this.password.equals(password);
     }
 
+    @Override
+    public String toString(){
+        String s=("Utilizador nº "+this.id_pessoa
+        +"\n\tNome - "+ this.primeiroNome.concat(" "+this.ultimoNome)+
+                "\n\tEmail - " +this.email+"\n\tContato- "+this.contato);
+        return s;
+    }
+
 }
