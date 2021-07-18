@@ -1,6 +1,6 @@
 package estg.ipvc.gabrielSousa.entidades.marcacao;
 
-public class EstadoMarcacao {
+public class EstadoMarcacao implements java.io.Serializable{
     private int id_estadoMarcacao;
     private String nomeEstadoMarcacao;
 
@@ -17,6 +17,11 @@ public class EstadoMarcacao {
     }
 
     public void setNomeEstadoMarcacao(String nomeEstadoMarcacao) {
+        this.nomeEstadoMarcacao = nomeEstadoMarcacao;
+    }
+
+    public EstadoMarcacao(int id_estadoMarcacao, String nomeEstadoMarcacao) {
+        this.id_estadoMarcacao = id_estadoMarcacao;
         this.nomeEstadoMarcacao = nomeEstadoMarcacao;
     }
 }
