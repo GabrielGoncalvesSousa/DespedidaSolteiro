@@ -22,7 +22,7 @@ public abstract class MultiLeveledMenu implements Menu {
 
     private static final Serialization serialization = new Serialization();
     private static final DataCheckers dataCheckers = new DataCheckers(data);
-    private static DataFilters dataFilters = new DataFilters(data) ;
+    private static final DataFilters dataFilters = new DataFilters(data) ;
 
     public MultiLeveledMenu() {
 

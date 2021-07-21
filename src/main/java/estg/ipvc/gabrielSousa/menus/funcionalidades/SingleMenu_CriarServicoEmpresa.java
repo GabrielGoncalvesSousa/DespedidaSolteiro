@@ -18,36 +18,50 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
 
     @Override
     public void action() {
-        RegisterServicoEmpresaStringGetter stringHelper= new RegisterServicoEmpresaStringGetter();
+        RegisterServicoEmpresaStringGetter stringHelper = new RegisterServicoEmpresaStringGetter();
 
-        Pessoa currentPessoa= getData().getCurrentPessoa();
-        String nomeServico=stringHelper.getNomeServico();
+        Pessoa currentPessoa = getData().getCurrentPessoa();
+        String nomeServico = stringHelper.getNomeServico();
+        Boolean auxBoolean =verificaNomeServico(nomeServico);;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (!auxBoolean){
+            System.out.print("Nome de serviço já usado. Escolha outro: ");
+            nomeServico= scanner.nextLine();
+            auxBoolean=verificaNomeServico(nomeServico);
+        }
+
         String contato = stringHelper.getContatoSer();
-        String duracao= stringHelper.getContatoSer();
-        int iva= stringHelper.getIva();
+        String duracao = stringHelper.getDuracaoSer();
+        int iva = stringHelper.getIva();
         int precoComIva = stringHelper.getPrecoIva();
-        String desc= stringHelper.getDescricaoSer();
+        String desc = stringHelper.getDescricaoSer();
 
-        String codigo_postal=stringHelper.getCodPost();
-        String rua=stringHelper.getRua();
-        System.out.print("Selecione o Distrito a que pertence: ");
+        String codigo_postal = stringHelper.getCodPost();
+        String rua = stringHelper.getRua();
+        System.out.println("Selecione o Distrito a que pertence: ");
 
         getData().getDistritos().forEach(distrito -> {
-            System.out.println(distrito.getId_distrito() +" - "+distrito.getNomeDistrito());
+            System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
         });
-        int dis=stringHelper.getDist();
+
+        int dis = stringHelper.getDist();
+
 
         AtomicReference<Distrito> distritoSer = new AtomicReference<>();
         getData().getDistritos().forEach(distrito -> {
-            if(distrito.getId_distrito()==dis){
+            if (distrito.getId_distrito() == dis) {
                 distritoSer.set(distrito);
             }
         });
 
-        Localidade locSer = new Localidade(codigo_postal,distritoSer.get(),rua);
+        Localidade locSer = new Localidade(codigo_postal, distritoSer.get(), rua);
 
-        ServicoEmpresa currentServ = new ServicoEmpresa(currentPessoa,nomeServico,contato,
-                duracao,locSer,precoComIva,iva,desc);
+        ServicoEmpresa currentServ = new ServicoEmpresa(currentPessoa, nomeServico, contato,
+                duracao, locSer, precoComIva, iva, desc);
+
+        getData().getServicoEmpresas().add(currentServ);
 
 
         System.out.println("Serviço criado com sucesso");
@@ -56,6 +70,15 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
     @Override
     public String getName() {
         return "Criar Serviço";
+    }
+
+    public boolean verificaNomeServico(String nomeServico) {
+        for (ServicoEmpresa servicoEmpresa : getData().getServicoEmpresas()) {
+            if (servicoEmpresa.getNomeServico().equals(nomeServico)) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
@@ -104,8 +127,14 @@ class RegisterServicoEmpresaStringGetter {
         return scanner.nextLine();
     }
 
-    public int getDist(){
-        return Integer.parseInt(scanner.nextLine());
+    public int getDist() {
+
+        int dis = Integer.parseInt(scanner.nextLine());
+        while (dis > 20 || dis < 0) {
+            System.out.print("Distrito selecionado inválido, selecione outro: ");
+            dis = Integer.parseInt(scanner.nextLine());
+        }
+        return dis;
     }
 
 }

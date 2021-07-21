@@ -85,7 +85,6 @@ public class DataFilters extends SingleLeveledMenu {
     public boolean getAllClientInfo() {
         ArrayList<Pessoa> pessoaClientes = new ArrayList<>();
 
-
         //Getting all clients
         getData().getPessoas().forEach(pessoa -> {
             if (pessoa instanceof Cliente && pessoa.isAprovado()) {
@@ -120,9 +119,9 @@ public class DataFilters extends SingleLeveledMenu {
             } else {
                 System.out.println("\n\tTotal Gasto - " + totalGasto);
             }
-
-
         });
         return true;
     }
+
+
 }

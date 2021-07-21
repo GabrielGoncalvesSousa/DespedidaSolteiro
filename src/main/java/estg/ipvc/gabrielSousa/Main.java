@@ -10,11 +10,11 @@ public class Main {
         Serialization serialization = new Serialization();
 
         //Save fabricated data
-        MainData data = new MainData();
-        serialization.saveData(data);
+        MainData data = serialization.loadData();
 
       /*  MainData data = serialization.loadData();*/
         MultiMenu_MainMenu multiMenuMainMenu = new MultiMenu_MainMenu(data);
         multiMenuMainMenu.run();
+        serialization.saveData(data);
     }
 }

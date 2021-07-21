@@ -20,32 +20,7 @@ public class SingleMenu_Login extends SingleLeveledMenu implements Menu {
 
     @Override
     public void action() {
-        System.out.println("WTFFF");
-        /*Scanner scanner = new Scanner(System.in);
-        System.out.println("Introduza o Login");
-        String login = scanner.nextLine();
-        System.out.println("Introduza a password");
-        String password = scanner.nextLine();
 
-        getData().setCurrentPessoa(null);
-
-        try {
-            //Return true if login is successful
-            if (!getDataCheckers().checkIfLoginAndPasswordExists(login, password)) {
-                throw new Exception();
-            } else if (getData().getCurrentPessoa() instanceof GestorSistema) {
-                System.out.println("Login com sucesso " + getData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
-                        + getData().getCurrentPessoa().getPrimeiroNome() + " " + getData().getCurrentPessoa().getUltimoNome());
-                currentUserMenu= new MultiMenu_GestorSistemaHome(getData());
-
-
-
-            }
-        } catch (Exception e) {
-            System.out.println("Credencias Inválidas.");
-        }
-
-*/
     }
 
 
