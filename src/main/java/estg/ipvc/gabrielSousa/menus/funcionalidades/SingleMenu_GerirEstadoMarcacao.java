@@ -4,24 +4,17 @@ import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.EstadoMarcacao;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements Menu {
-    public SingleMenu_GerirEstadoMarcacao(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_GerirEstadoMarcacao extends MenuData implements Menu {
     @Override
     public void action() {
 
-        Scanner scanner = new Scanner(System.in);
-
-
-        getData().getMarcacoes().forEach(marcacao -> System.out.println(marcacao.toString()));
+        getMainData().getMarcacoes().forEach(marcacao -> System.out.println(marcacao.toString()));
         int estado;
 
 
@@ -31,7 +24,7 @@ public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements
 
 
         int finalMarcacao1 = marcacao;
-        getData().getMarcacoes().forEach(marcacao1 -> {
+        getMainData().getMarcacoes().forEach(marcacao1 -> {
             if (marcacao1.getId_marcacao() == finalMarcacao1) {
                 marcacaoVerifier.set(true);
             }
@@ -42,7 +35,7 @@ public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements
             System.out.print("Marcação Selecionado Inválida, selecione outra marcação: ");
             marcacao = Integer.parseInt(scanner.nextLine());
             int finalMarcacao = marcacao;
-            getData().getMarcacoes().forEach(marcacao1 -> {
+            getMainData().getMarcacoes().forEach(marcacao1 -> {
                 if (marcacao1.getId_marcacao() == finalMarcacao) {
                     marcacaoVerifier.set(true);
                 }
@@ -50,7 +43,7 @@ public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements
         }
 
         System.out.println("Estados Disponiveis");
-        getData().getEstadoMarcacaos().forEach(estadoMarcacao -> {
+        getMainData().getEstadoMarcacaos().forEach(estadoMarcacao -> {
             System.out.println(estadoMarcacao.getId_estadoMarcacao() + " - " + estadoMarcacao.getNomeEstadoMarcacao());
         });
 
@@ -62,10 +55,10 @@ public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements
             estado = Integer.parseInt(scanner.nextLine());
         }
 
-        Marcacao marcacaoSelecionada = getData().getMarcacoes().get(marcacao);
+        Marcacao marcacaoSelecionada = getMainData().getMarcacoes().get(marcacao);
         AtomicReference<EstadoMarcacao> estadoMarcacaoAtomicReference = new AtomicReference<>();
         int finalEstado = estado;
-        getData().getEstadoMarcacaos().forEach(estadoMarc -> {
+        getMainData().getEstadoMarcacaos().forEach(estadoMarc -> {
             if (estadoMarc.getId_estadoMarcacao() == finalEstado) {
                 estadoMarcacaoAtomicReference.set(estadoMarc);
             }

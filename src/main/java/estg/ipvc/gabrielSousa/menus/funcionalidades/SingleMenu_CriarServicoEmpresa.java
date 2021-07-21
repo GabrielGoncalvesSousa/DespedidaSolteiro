@@ -1,30 +1,24 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
-import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Distrito;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Localidade;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements Menu {
-    public SingleMenu_CriarServicoEmpresa(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
     @Override
     public void action() {
         RegisterServicoEmpresaStringGetter stringHelper = new RegisterServicoEmpresaStringGetter();
 
-        Pessoa currentPessoa = getData().getCurrentPessoa();
+        Pessoa currentPessoa = getMainData().getCurrentPessoa();
+
         String nomeServico = stringHelper.getNomeServico();
         Boolean auxBoolean =verificaNomeServico(nomeServico);;
-
-        Scanner scanner = new Scanner(System.in);
 
         while (!auxBoolean){
             System.out.print("Nome de serviço já usado. Escolha outro: ");
@@ -42,7 +36,7 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
         String rua = stringHelper.getRua();
         System.out.println("Selecione o Distrito a que pertence: ");
 
-        getData().getDistritos().forEach(distrito -> {
+        getMainData().getDistritos().forEach(distrito -> {
             System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
         });
 
@@ -50,7 +44,7 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
 
 
         AtomicReference<Distrito> distritoSer = new AtomicReference<>();
-        getData().getDistritos().forEach(distrito -> {
+        getMainData().getDistritos().forEach(distrito -> {
             if (distrito.getId_distrito() == dis) {
                 distritoSer.set(distrito);
             }
@@ -61,7 +55,7 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
         ServicoEmpresa currentServ = new ServicoEmpresa(currentPessoa, nomeServico, contato,
                 duracao, locSer, precoComIva, iva, desc);
 
-        getData().getServicoEmpresas().add(currentServ);
+        getMainData().getServicoEmpresas().add(currentServ);
 
 
         System.out.println("Serviço criado com sucesso");
@@ -73,7 +67,7 @@ public class SingleMenu_CriarServicoEmpresa extends SingleLeveledMenu implements
     }
 
     public boolean verificaNomeServico(String nomeServico) {
-        for (ServicoEmpresa servicoEmpresa : getData().getServicoEmpresas()) {
+        for (ServicoEmpresa servicoEmpresa : getMainData().getServicoEmpresas()) {
             if (servicoEmpresa.getNomeServico().equals(nomeServico)) {
                 return false;
             }

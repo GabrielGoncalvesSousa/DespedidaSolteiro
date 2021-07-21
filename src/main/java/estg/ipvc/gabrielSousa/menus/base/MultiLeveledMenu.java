@@ -4,33 +4,26 @@
  * and open the template in the editor.
  */
 package estg.ipvc.gabrielSousa.menus.base;
-import estg.ipvc.gabrielSousa.entidades.MainData;
+
 
 import java.util.Arrays;
 import java.util.Scanner;
 import java.util.Stack;
 
-public abstract class MultiLeveledMenu implements Menu {
+public abstract class MultiLeveledMenu extends MenuData implements Menu {
     /**Constant static definitions for the Options Menu classe*/
     private static final String MENU_FORMAT = "%2d - %s";
     private static final String LABEL_SELECT_OPTION = "Please select an option: ";
     private static final String LABEL_BAD_INPUT = "[error] The provided input is not a valid option";
-    protected static final Scanner scanner = new Scanner(System.in);
 
-    /** Constant static that stores the data to be used by other menus */
-    private static MainData data;
 
-    private static final Serialization serialization = new Serialization();
-    private static final DataCheckers dataCheckers = new DataCheckers(data);
-    private static final DataFilters dataFilters = new DataFilters(data) ;
 
-    public MultiLeveledMenu() {
+    public MultiLeveledMenu(){
 
     }
 
-
     /**An helper function to read an option from the command line */
-    protected static int readOption() {
+    int readOption() {
         return Integer.parseUnsignedInt(scanner.nextLine());
     }
 
@@ -39,16 +32,6 @@ public abstract class MultiLeveledMenu implements Menu {
 
     /**The options for this menu **/
     private Menu[] menus;
-
-    public Serialization getSerialization(){
-        return serialization;
-    }
-    public static DataCheckers getDataCheckers() {
-        return dataCheckers;
-    }
-    public static DataFilters getDataFilters() {
-        return dataFilters;
-    }
 
     /**Constructor takes the array of options for this menu@param options */
     public MultiLeveledMenu(Menu[] options) {
@@ -59,14 +42,6 @@ public abstract class MultiLeveledMenu implements Menu {
     }
 
 
-    /** Getters and setters from data */
-    public void setData(MainData data) {
-        MultiLeveledMenu.data = data;
-    }
-
-    public MainData getData() {
-        return data;
-    }
 
     /**Prints the title of the Menu */
     private void printTitle() {
@@ -75,10 +50,6 @@ public abstract class MultiLeveledMenu implements Menu {
         System.out.println(String.format("*****%s*****", name.replaceAll(".", "*")));
         System.out.println(String.format("*    %s    *", name));
         System.out.println(String.format("*****%s*****", name.replaceAll(".", "*")));
-    }
-
-    public Stack<Menu> getMenusStack() {
-        return menusStack;
     }
 
     @Override
@@ -119,8 +90,9 @@ public abstract class MultiLeveledMenu implements Menu {
 
     private Stack<Menu> menusStack = new Stack<>();
 
-    @Override
-    public abstract String getName();
+    public String getName() {
+        return null;
+    }
 
     public void stackManipulation(){
         while (!menusStack.empty()) {
@@ -139,7 +111,7 @@ public abstract class MultiLeveledMenu implements Menu {
         }
     }
 
-    public void addMenu(Menu menu){
+    public final void addMenu(Menu menu){
         menusStack.push(menu);
         stackManipulation();
     }

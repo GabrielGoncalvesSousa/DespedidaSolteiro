@@ -1,27 +1,19 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
-import estg.ipvc.gabrielSousa.entidades.MainData;
-import estg.ipvc.gabrielSousa.entidades.marcacao.Distrito;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReference;
 
-public class SingleMenu_CriarMarcacao extends SingleLeveledMenu implements Menu {
-    public SingleMenu_CriarMarcacao(MainData data) {
-        super(data);
-    }
 
-    Scanner scanner = new Scanner(System.in);
-
+public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
     @Override
     public void action() {
 
-        getData().getDistritos().forEach(distrito -> {
+        getMainData().getDistritos().forEach(distrito -> {
             System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
         });
 
@@ -35,7 +27,7 @@ public class SingleMenu_CriarMarcacao extends SingleLeveledMenu implements Menu 
 
         ArrayList<ServicoEmpresa> servicosDisponiveis = new ArrayList<>();
 
-       for(ServicoEmpresa servEmp : getData().getServicoEmpresas()){
+       for(ServicoEmpresa servEmp : getMainData().getServicoEmpresas()){
            if(servEmp.getLocalidade().getDistrito().getId_distrito()==disId){
                servicosDisponiveis.add(servEmp);
            }
@@ -46,7 +38,7 @@ public class SingleMenu_CriarMarcacao extends SingleLeveledMenu implements Menu 
             System.out.println("Selecione outro distrito: ");
             disId = Integer.parseInt(scanner.nextLine());
 
-            for (ServicoEmpresa servicoEmpresa: getData().getServicoEmpresas()){
+            for (ServicoEmpresa servicoEmpresa: getMainData().getServicoEmpresas()){
                 if(servicoEmpresa.getLocalidade().getDistrito().getId_distrito()==disId){
                     servicosDisponiveis.add(servicoEmpresa);
                 }
@@ -81,7 +73,7 @@ public class SingleMenu_CriarMarcacao extends SingleLeveledMenu implements Menu 
         String dataPretendida = scanner.nextLine();
 
 
-        getData().getMarcacoes().add(new Marcacao(getData().getCurrentPessoa(), getData().getEstadoMarcacaos().get(0), servicoSelecionado, 0, dataPretendida));
+        getMainData().getMarcacoes().add(new Marcacao(getMainData().getCurrentPessoa(), getMainData().getEstadoMarcacaos().get(0), servicoSelecionado, 0, dataPretendida));
         System.out.println("Adicionado com sucesso");
 
     }

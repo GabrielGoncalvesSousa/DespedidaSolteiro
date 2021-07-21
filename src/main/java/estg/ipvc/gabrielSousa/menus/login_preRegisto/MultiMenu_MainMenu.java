@@ -17,12 +17,12 @@ import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
  */
 
 public class MultiMenu_MainMenu extends MultiLeveledMenu {
-    public MultiMenu_MainMenu(MainData data) {
+
+    public MultiMenu_MainMenu() {
         super(new Menu[] {
-                new MultiMenu_Login(data),
-                new SingleMenu_PreRegisto(data)
+                new SingleMenu_Login(),
+                new SingleMenu_PreRegisto()
         });
-        super.setData(data);
     }
 
     @Override

@@ -1,28 +1,20 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
-
-import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SingleMenu_AvaliarServico extends SingleLeveledMenu implements Menu {
-
-    public SingleMenu_AvaliarServico(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_AvaliarServico extends MenuData implements Menu {
     @Override
     public void action() {
 
         try {
-            Scanner scanner = new Scanner(System.in);
             ArrayList<Marcacao> marcacoesDisponiveisParaAvaliar = new ArrayList<>();
 
-            getData().getMarcacoes().forEach(marcacao -> {
-                if (marcacao.getCliente().equals(getData().getCurrentPessoa()) &&
+            getMainData().getMarcacoes().forEach(marcacao -> {
+                if (marcacao.getCliente().equals(getMainData().getCurrentPessoa()) &&
                         marcacao.getEstadoMarcacao().getId_estadoMarcacao() == 2) {
                     System.out.println(marcacao.toString());
                     marcacoesDisponiveisParaAvaliar.add(marcacao);
@@ -54,7 +46,7 @@ public class SingleMenu_AvaliarServico extends SingleLeveledMenu implements Menu
 
             int finalMarcid = marcid;
             int finalPontuacao = pontuacao;
-            getData().getMarcacoes().forEach(marcacao -> {
+            getMainData().getMarcacoes().forEach(marcacao -> {
                 if (marcacao.getId_marcacao() == finalMarcid) {
                     marcacao.setPontuacao(finalPontuacao);
                 }

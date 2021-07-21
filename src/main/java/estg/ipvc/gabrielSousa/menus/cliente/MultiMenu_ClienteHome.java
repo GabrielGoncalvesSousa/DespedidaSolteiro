@@ -11,13 +11,12 @@ import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_VerEstadoMarcacao
 
 public class MultiMenu_ClienteHome extends MultiLeveledMenu {
 
-    public MultiMenu_ClienteHome(MainData data) {
+    public MultiMenu_ClienteHome() {
         super(new Menu[]{
-                new SingleMenu_CriarMarcacao(data),
-                new SingleMenu_VerEstadoMarcacao(data),
-                new SingleMenu_AvaliarServico(data)
+                new SingleMenu_CriarMarcacao(),
+                new SingleMenu_VerEstadoMarcacao(),
+                new SingleMenu_AvaliarServico()
         });
-        super.setData(data);
     }
 
     @Override
