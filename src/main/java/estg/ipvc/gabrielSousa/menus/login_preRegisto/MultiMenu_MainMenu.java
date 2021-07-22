@@ -6,7 +6,6 @@
 package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
 
-import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
 
@@ -20,7 +19,7 @@ public class MultiMenu_MainMenu extends MultiLeveledMenu {
 
     public MultiMenu_MainMenu() {
         super(new Menu[] {
-                new SingleMenu_Login(),
+                new MultiMenu_Login(),
                 new SingleMenu_PreRegisto()
         });
     }

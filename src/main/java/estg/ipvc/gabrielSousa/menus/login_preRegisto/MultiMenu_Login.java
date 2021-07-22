@@ -10,8 +10,8 @@ import estg.ipvc.gabrielSousa.menus.gestorSistema.MultiMenu_GestorSistemaHome;
 
 import java.util.Scanner;
 
-public class SingleMenu_Login extends MultiLeveledMenu {
-    public SingleMenu_Login() {
+public class MultiMenu_Login extends MultiLeveledMenu {
+    public MultiMenu_Login() {
         super();
     }
 
