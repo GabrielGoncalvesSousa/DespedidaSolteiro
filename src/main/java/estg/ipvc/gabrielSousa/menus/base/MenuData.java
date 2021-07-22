@@ -16,6 +16,10 @@ public abstract class MenuData implements Menu{
     private static MainData mainData = serialization.loadData();
     public static Scanner scanner = new Scanner(System.in);
 
+    public static Serialization getSerialization() {
+        return serialization;
+    }
+
     public MainData getMainData(){
         return mainData;
     }

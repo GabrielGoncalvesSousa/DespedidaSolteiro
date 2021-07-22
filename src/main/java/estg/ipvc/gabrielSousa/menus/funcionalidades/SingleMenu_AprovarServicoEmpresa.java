@@ -12,7 +12,7 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
     @Override
     public void action() {
         try {
-            ArrayList<ServicoEmpresa> servicosNaoAprovados =getContasServicosEmpresaParaAprovar();
+            ArrayList<ServicoEmpresa> servicosNaoAprovados = getContasServicosEmpresaParaAprovar();
 
             if (servicosNaoAprovados.isEmpty()) {
                 throw new Exception("Não existem serviços aguardando aprovação.");
@@ -20,7 +20,7 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
 
             boolean verifier;
             do {
-                verifier=optionChecker(servicosNaoAprovados);
+                verifier = optionChecker(servicosNaoAprovados);
             } while (!verifier);
 
         } catch (Exception e) {
@@ -43,6 +43,8 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
                 if (se.getId_servicoEmpresa() == id) {
                     se.setAprovado(true);
                     System.out.println("\nServiço Aprovado com Sucesso.");
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
                     return true;
                 }
             }

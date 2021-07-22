@@ -42,6 +42,9 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
                 if (p.getId_pessoa() == id) {
                     p.setAprovado(true);
                     System.out.println("\nUtilizador Aprovado com sucesso.");
+
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
                     return true;
                 }
             }

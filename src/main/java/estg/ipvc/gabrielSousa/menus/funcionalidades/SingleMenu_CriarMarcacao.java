@@ -75,6 +75,8 @@ public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
 
         getMainData().getMarcacoes().add(new Marcacao(getMainData().getCurrentPessoa(), getMainData().getEstadoMarcacaos().get(0), servicoSelecionado, 0, dataPretendida));
         System.out.println("Adicionado com sucesso");
+        //Guardar os dados no ficheiro
+        getSerialization().saveData(getMainData());
 
     }
 

@@ -66,6 +66,8 @@ public class SingleMenu_GerirEstadoMarcacao extends MenuData implements Menu {
 
         marcacaoSelecionada.setEstadoMarcacao(estadoMarcacaoAtomicReference.get());
         System.out.println("Marcação alterada com sucesso.");
+        //Guardar os dados no ficheiro
+        getSerialization().saveData(getMainData());
     }
 
     @Override

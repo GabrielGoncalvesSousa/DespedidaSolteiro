@@ -57,8 +57,9 @@ public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
 
         getMainData().getServicoEmpresas().add(currentServ);
 
-
         System.out.println("Serviço criado com sucesso");
+        //Guardar os dados no ficheiro
+        getSerialization().saveData(getMainData());
     }
 
     @Override

@@ -53,7 +53,11 @@ public class SingleMenu_PreRegisto extends MenuData implements Menu {
             Pessoa p = new Pessoa(tipoPessoa, login, password, primeiroNome, ulimoNome,
                     email, contato, false);
 
+            //Adicionar no arrayList
             getMainData().getPessoas().add(p);
+
+            //Guardar os dados no ficheiro
+            getSerialization().saveData(getMainData());
 
         } catch (Exception e) {
             System.out.println(e.getMessage());

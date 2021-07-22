@@ -1,4 +1,5 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
+
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
@@ -22,7 +23,7 @@ public class SingleMenu_AvaliarServico extends MenuData implements Menu {
             });
 
 
-            if(marcacoesDisponiveisParaAvaliar.isEmpty()){
+            if (marcacoesDisponiveisParaAvaliar.isEmpty()) {
                 System.out.println("Sem Marcações concluidas para avaliar");
                 throw new Exception();
             }
@@ -49,6 +50,8 @@ public class SingleMenu_AvaliarServico extends MenuData implements Menu {
             getMainData().getMarcacoes().forEach(marcacao -> {
                 if (marcacao.getId_marcacao() == finalMarcid) {
                     marcacao.setPontuacao(finalPontuacao);
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
                 }
             });
 
