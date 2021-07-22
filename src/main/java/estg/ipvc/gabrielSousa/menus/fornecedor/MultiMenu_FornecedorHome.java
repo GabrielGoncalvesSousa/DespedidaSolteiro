@@ -9,11 +9,10 @@ import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_CriarServicoEmpre
 
 public class MultiMenu_FornecedorHome extends MultiLeveledMenu {
 
-    public MultiMenu_FornecedorHome(MainData data) {
+    public MultiMenu_FornecedorHome() {
         super(new Menu[]{
-                new SingleMenu_CriarServicoEmpresa(data)
+                new SingleMenu_CriarServicoEmpresa()
         });
-        super.setData(data);
     }
 
     @Override
