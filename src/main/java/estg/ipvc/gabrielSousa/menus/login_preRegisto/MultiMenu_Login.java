@@ -1,10 +1,7 @@
 package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
-
-import estg.ipvc.gabrielSousa.entidades.MainData;
-import estg.ipvc.gabrielSousa.entidades.pessoa.GestorSistema;
-import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import estg.ipvc.gabrielSousa.menus.base.MultiLeveledMenu;
 import estg.ipvc.gabrielSousa.menus.cliente.MultiMenu_ClienteHome;
 import estg.ipvc.gabrielSousa.menus.fornecedor.MultiMenu_FornecedorHome;
@@ -14,43 +11,40 @@ import estg.ipvc.gabrielSousa.menus.gestorSistema.MultiMenu_GestorSistemaHome;
 import java.util.Scanner;
 
 public class MultiMenu_Login extends MultiLeveledMenu {
-
-    public MultiMenu_Login(MainData data) {
-        super(new Menu[]{
-                new SingleMenu_Login(data),
-        });
+    public MultiMenu_Login() {
+        super();
     }
+
 
     @Override
     public void action() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Introduza o Login");
         String login = scanner.nextLine();
         System.out.println("Introduza a password");
         String password = scanner.nextLine();
 
-        getData().setCurrentPessoa(null);
+        getMainData().setCurrentPessoa(null);
 
         try {
             //Return true if user exists exists
-            if (!getDataCheckers().checkIfLoginAndPasswordExists(login, password)) {
+            if (!checkIfLoginAndPasswordExists(login, password)) {
                 throw new Exception("Credencias Inválidas");
-            } else if (!getData().getCurrentPessoa().isAprovado()) {
+            } else if (!getMainData().getCurrentPessoa().isAprovado()) {
                 throw new Exception("A conta ainda não foi aprovada");
             } else {
                 welcomeMessage();
-                switch (getData().getCurrentPessoa().getId_pessoa()) {
+                switch (getMainData().getCurrentPessoa().getTipoPessoa().getId_tipoPessoa()) {
                     case 0 -> {
-                        super.addMenu(new MultiMenu_GestorSistemaHome(getData()));
+                        addMenu(new MultiMenu_GestorSistemaHome());
                     }
                     case 1 -> {
-                        super.addMenu(new MultiMenu_FuncionarioHome(getData()));
+                        addMenu(new MultiMenu_FuncionarioHome());
                     }
                     case 2 -> {
-                        super.addMenu(new MultiMenu_FornecedorHome(getData()));
+                        addMenu(new MultiMenu_FornecedorHome());
                     }
                     case 3 -> {
-                        super.addMenu(new MultiMenu_ClienteHome(getData()));
+                        addMenu(new MultiMenu_ClienteHome());
                     }
                 }
             }
@@ -60,8 +54,8 @@ public class MultiMenu_Login extends MultiLeveledMenu {
     }
 
     public void welcomeMessage() {
-        System.out.println("Bem Vindo " + getData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
-                + getData().getCurrentPessoa().getPrimeiroNome() + " " + getData().getCurrentPessoa().getUltimoNome());
+        System.out.println("Bem Vindo " + getMainData().getCurrentPessoa().getTipoPessoa().getNomeTipoPessoa() + " "
+                + getMainData().getCurrentPessoa().getPrimeiroNome() + " " + getMainData().getCurrentPessoa().getUltimoNome());
 
     }
 
@@ -69,6 +63,5 @@ public class MultiMenu_Login extends MultiLeveledMenu {
     public String getName() {
         return "Login";
     }
-
 }
 

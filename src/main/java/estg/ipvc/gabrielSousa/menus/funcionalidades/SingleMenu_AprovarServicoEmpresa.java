@@ -2,24 +2,17 @@ package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
-import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SingleMenu_AprovarServicoEmpresa extends SingleLeveledMenu implements Menu {
-    private Scanner scanner = new Scanner(System.in);
-
-    public SingleMenu_AprovarServicoEmpresa(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
     @Override
     public void action() {
         try {
-            ArrayList<ServicoEmpresa> servicosNaoAprovados = getDataFilters().getContasServicosEmpresaParaAprovar();
+            ArrayList<ServicoEmpresa> servicosNaoAprovados =getContasServicosEmpresaParaAprovar();
 
             if (servicosNaoAprovados.isEmpty()) {
                 throw new Exception("Não existem serviços aguardando aprovação.");

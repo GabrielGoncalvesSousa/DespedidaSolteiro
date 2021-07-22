@@ -8,16 +8,61 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class DataFilters extends SingleLeveledMenu {
-    public DataFilters(MainData data) {
-        super(data);
+public abstract class MenuData implements Menu{
+   private static final Serialization serialization = new Serialization();
+    private static MainData mainData = serialization.loadData();
+    public static Scanner scanner = new Scanner(System.in);
+
+    public MainData getMainData(){
+        return mainData;
+    }
+
+    public boolean checkIfMailExists(String mail) {
+        try {
+            for (Pessoa p :mainData.getPessoas()) {
+                if (p.getEmail().equals(mail)) {
+                    throw new Exception();
+                }
+            }
+        } catch (Exception e) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfLoginExists(String login) {
+        try {
+            for (Pessoa p : mainData.getPessoas()) {
+                if (p.getLogin().equals(login)) {
+                    throw new Exception();
+                }
+            }
+
+        } catch (Exception e) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkIfLoginAndPasswordExists(String login, String password) {
+        try {
+            for (Pessoa p : mainData.getPessoas()) {
+                if (p.login(login, password)) { mainData.setCurrentPessoa(p);
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
 
     public void getTiposParaPreRegisto() {
 
-        for (TipoPessoa tp : getData().getTpPessoas()) {
+        for (TipoPessoa tp : mainData.getTpPessoas()) {
             if (tp.getId_tipoPessoa() == 2 | tp.getId_tipoPessoa() == 3)
                 System.out.println(tp.getId_tipoPessoa() + " - " + tp.getNomeTipoPessoa());
         }
@@ -25,7 +70,7 @@ public class DataFilters extends SingleLeveledMenu {
 
     public TipoPessoa getTipoPessoaSelecionadaParaRegisto(int id_tp) {
         try {
-            for (TipoPessoa tipoPessoa : getData().getTpPessoas()) {
+            for (TipoPessoa tipoPessoa : mainData.getTpPessoas()) {
                 if (tipoPessoa.getId_tipoPessoa() == id_tp) {
                     return tipoPessoa;
                 }
@@ -41,7 +86,7 @@ public class DataFilters extends SingleLeveledMenu {
         ArrayList<Pessoa> pessoasNaoProvadas = new ArrayList<>();
 
         try {
-            for (Pessoa p : getData().getPessoas()) {
+            for (Pessoa p : mainData.getPessoas()) {
                 if (!p.isAprovado()) {
                     pessoasNaoProvadas.add(p);
                 }
@@ -63,7 +108,7 @@ public class DataFilters extends SingleLeveledMenu {
         ArrayList<ServicoEmpresa> servicosNaoAprovados = new ArrayList<>();
 
         try {
-            for (ServicoEmpresa se : getData().getServicoEmpresas()) {
+            for (ServicoEmpresa se : mainData.getServicoEmpresas()) {
                 if (!se.isAprovado()) {
                     servicosNaoAprovados.add(se);
                 }
@@ -85,9 +130,8 @@ public class DataFilters extends SingleLeveledMenu {
     public boolean getAllClientInfo() {
         ArrayList<Pessoa> pessoaClientes = new ArrayList<>();
 
-
         //Getting all clients
-        getData().getPessoas().forEach(pessoa -> {
+        mainData.getPessoas().forEach(pessoa -> {
             if (pessoa instanceof Cliente && pessoa.isAprovado()) {
                 pessoaClientes.add(pessoa);
             }
@@ -106,7 +150,7 @@ public class DataFilters extends SingleLeveledMenu {
             ArrayList<Marcacao> marcacoesClientes = new ArrayList<>();
 
             //Buscar marcacoes do respetivo cliente
-            getData().getMarcacoes().forEach(marcacao -> {
+            mainData.getMarcacoes().forEach(marcacao -> {
                 if (marcacao.getCliente() == cliente) {
 
                     System.out.println(marcacao.toString());
@@ -120,8 +164,6 @@ public class DataFilters extends SingleLeveledMenu {
             } else {
                 System.out.println("\n\tTotal Gasto - " + totalGasto);
             }
-
-
         });
         return true;
     }

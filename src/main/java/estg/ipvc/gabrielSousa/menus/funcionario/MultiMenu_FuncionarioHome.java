@@ -10,13 +10,13 @@ import estg.ipvc.gabrielSousa.menus.funcionalidades.SingleMenu_VerInfoCliente;
 
 public class MultiMenu_FuncionarioHome extends MultiLeveledMenu {
 
-    public MultiMenu_FuncionarioHome(MainData data) {
+    public MultiMenu_FuncionarioHome() {
         super(new Menu[]{
-                new SingleMenu_AprovarPreRegisto(data),
-                new SingleMenu_GerirEstadoMarcacao(data),
-                new SingleMenu_VerInfoCliente(data)
+                new SingleMenu_AprovarPreRegisto(),
+                new SingleMenu_GerirEstadoMarcacao(),
+                new SingleMenu_VerInfoCliente()
         });
-        super.setData(data);
+
     }
 
     @Override

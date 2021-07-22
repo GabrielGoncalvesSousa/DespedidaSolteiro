@@ -66,7 +66,7 @@ public class Marcacao implements java.io.Serializable {
                 +"\n\t\t Estado da Marcação - "+this.getEstadoMarcacao().getNomeEstadoMarcacao()
                 +"\n\t\t Localização da Marcação - "+this.getServicoEmpresa().getLocalidade().getNomeLocalidade()
                 +" no Distrito de "+this.getServicoEmpresa().getLocalidade().getDistrito().getNomeDistrito()
-                +"\n\t\t Preço do Serviço - "+this.getServicoEmpresa().getPrecoComIva()
+                +"\n\t\t Preço do Serviço - "+String.format("%.2f",this.getServicoEmpresa().getPrecoComIva()*1.35)
                 +"\n\t\t Duração do Serviço - "+this.getServicoEmpresa().getDuracao()
                 +"\n\t\t Data - "+this.getData()
                 );

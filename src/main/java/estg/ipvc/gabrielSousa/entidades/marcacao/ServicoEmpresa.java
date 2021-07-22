@@ -53,6 +53,21 @@ public class ServicoEmpresa implements java.io.Serializable {
         return s;
     }
 
+    public String toStringCliente(){
+        String s = (
+                "Servico nº " + this.id_servicoEmpresa
+                        + "\n\tRequesitado por - " + this.pessoa.getPrimeiroNome().concat(" " + this.pessoa.getUltimoNome())
+                        + "\n\tNome de Serviço - " + this.nomeServico
+                        + "\n\tDuração de - " + this.duracao
+                        + "\n\tContato do Prestador de Serviço - " + this.contato
+                        + "\n\tLocalidade - " + this.localidade.getNomeLocalidade() + " distrito de " + this.localidade.getDistrito().getNomeDistrito()
+                        + "\n\tPreço com Iva - " +String.format("%.2f",this.precoComIva *1.35)
+                        + "\n\tIva do Serviço - " + this.iva
+                        + "\n\tDescrição do Serviço - " + this.descricao
+        );
+        return s;
+    }
+
     public int getId_servicoEmpresa() {
         return id_servicoEmpresa;
     }

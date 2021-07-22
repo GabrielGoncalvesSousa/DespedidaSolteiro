@@ -4,75 +4,68 @@ import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.EstadoMarcacao;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
-public class SingleMenu_GerirEstadoMarcacao extends SingleLeveledMenu implements Menu {
-    public SingleMenu_GerirEstadoMarcacao(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_GerirEstadoMarcacao extends MenuData implements Menu {
     @Override
     public void action() {
-        System.out.println("Estados Disponiveis");
-        Scanner scanner = new Scanner(System.in);
 
-        getData().getEstadoMarcacaos().forEach(estadoMarcacao -> {
-            System.out.println(estadoMarcacao.getId_estadoMarcacao()+" - " +estadoMarcacao.getNomeEstadoMarcacao());
-        });
-
-        getData().getMarcacoes().forEach(marcacao -> System.out.println(marcacao.toString()));
+        getMainData().getMarcacoes().forEach(marcacao -> System.out.println(marcacao.toString()));
         int estado;
 
-        System.out.print("Selecione um estado: ");
-        estado = Integer.parseInt(scanner.nextLine());
-
-        while (estado!=0&&estado!=1&&estado!=2){
-            System.out.print("Estado Selecionado Inválido, selecione outro estado: ");
-            estado = Integer.parseInt(scanner.nextLine());
-        }
 
         System.out.print("Selecione a marcação pretendida: ");
         int marcacao = Integer.parseInt(scanner.nextLine());
-        AtomicBoolean spagghetiMuch = new AtomicBoolean(false);
+        AtomicBoolean marcacaoVerifier = new AtomicBoolean(false);
 
 
         int finalMarcacao1 = marcacao;
-        getData().getMarcacoes().forEach(marcacao1->{
-            if(marcacao1.getId_marcacao()== finalMarcacao1){
-                spagghetiMuch.set(true);
+        getMainData().getMarcacoes().forEach(marcacao1 -> {
+            if (marcacao1.getId_marcacao() == finalMarcacao1) {
+                marcacaoVerifier.set(true);
             }
         });
 
 
-
-        //Teacher, if you're reading this, I don't have time to implement this correctly
-        //Maybe consider adding more time when asking for this types of projects.
-
-        while (!spagghetiMuch.get()){
+        while (!marcacaoVerifier.get()) {
             System.out.print("Marcação Selecionado Inválida, selecione outra marcação: ");
             marcacao = Integer.parseInt(scanner.nextLine());
             int finalMarcacao = marcacao;
-            getData().getMarcacoes().forEach(marcacao1->{
-                if(marcacao1.getId_marcacao()== finalMarcacao){
-                    spagghetiMuch.set(true);
+            getMainData().getMarcacoes().forEach(marcacao1 -> {
+                if (marcacao1.getId_marcacao() == finalMarcacao) {
+                    marcacaoVerifier.set(true);
                 }
             });
         }
 
-        Marcacao thisIsSoSpaghetti = getData().getMarcacoes().get(marcacao);
-        AtomicReference<EstadoMarcacao> srlsIdontHaveTheTimeToUnspaghetti = new AtomicReference<>();
+        System.out.println("Estados Disponiveis");
+        getMainData().getEstadoMarcacaos().forEach(estadoMarcacao -> {
+            System.out.println(estadoMarcacao.getId_estadoMarcacao() + " - " + estadoMarcacao.getNomeEstadoMarcacao());
+        });
+
+        System.out.print("Selecione um estado: ");
+        estado = Integer.parseInt(scanner.nextLine());
+
+        while (estado != 0 && estado != 1 && estado != 2) {
+            System.out.print("Estado Selecionado Inválido, selecione outro estado: ");
+            estado = Integer.parseInt(scanner.nextLine());
+        }
+
+        Marcacao marcacaoSelecionada = getMainData().getMarcacoes().get(marcacao);
+        AtomicReference<EstadoMarcacao> estadoMarcacaoAtomicReference = new AtomicReference<>();
         int finalEstado = estado;
-        getData().getEstadoMarcacaos().forEach(estadoMarc ->{
-            if(estadoMarc.getId_estadoMarcacao()== finalEstado){
-                srlsIdontHaveTheTimeToUnspaghetti.set(estadoMarc);
+        getMainData().getEstadoMarcacaos().forEach(estadoMarc -> {
+            if (estadoMarc.getId_estadoMarcacao() == finalEstado) {
+                estadoMarcacaoAtomicReference.set(estadoMarc);
             }
         });
 
-       thisIsSoSpaghetti.setEstadoMarcacao(srlsIdontHaveTheTimeToUnspaghetti.get());
+        marcacaoSelecionada.setEstadoMarcacao(estadoMarcacaoAtomicReference.get());
+        System.out.println("Marcação alterada com sucesso.");
     }
 
     @Override

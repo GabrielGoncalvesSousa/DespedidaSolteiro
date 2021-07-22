@@ -7,13 +7,7 @@ import estg.ipvc.gabrielSousa.menus.base.*;
 
 import java.util.Scanner;
 
-public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
-
-    public SingleMenu_PreRegisto(MainData data) {
-        super(data);
-    }
-
-
+public class SingleMenu_PreRegisto extends MenuData implements Menu {
     @Override
     public void action() {
         try {
@@ -22,7 +16,7 @@ public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
             /*Getting login and verifying if exists return true if exists */
             String login = registerStringGetter.getLogin();
 
-            while (getDataCheckers().checkIfLoginExists(login)) {
+            while (checkIfLoginExists(login)) {
                 System.out.println("Login ja existe");
                 login = registerStringGetter.getLogin();
             }
@@ -32,13 +26,13 @@ public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
 
             /*Getting the id selected plus finding the match for the id
             and returning the corresponding tipoPessoa instance from the list */
-            getDataFilters().getTiposParaPreRegisto();
+            getTiposParaPreRegisto();
             int id = registerStringGetter.getTipoUtilizador();
             while (id != 2 && id != 3) {
                 System.out.print("Opção Inválida. ");
                 id = registerStringGetter.getTipoUtilizador();
             }
-            TipoPessoa tipoPessoa = getDataFilters().getTipoPessoaSelecionadaParaRegisto(id);
+            TipoPessoa tipoPessoa = getTipoPessoaSelecionadaParaRegisto(id);
 
             //Getting First Name
             String primeiroNome = registerStringGetter.getPrimeiroNome();
@@ -48,9 +42,9 @@ public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
 
             //Getting email and verifying if exists return true if exists
             String email = registerStringGetter.getMail();
-            while (getDataCheckers().checkIfMailExists(email)) {
+            while (checkIfMailExists(email)) {
                 email = registerStringGetter.getMail();
-                getDataCheckers().checkIfMailExists(email);
+                checkIfMailExists(email);
             }
 
             //getting contato
@@ -59,7 +53,7 @@ public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
             Pessoa p = new Pessoa(tipoPessoa, login, password, primeiroNome, ulimoNome,
                     email, contato, false);
 
-            getData().getPessoas().add(p);
+            getMainData().getPessoas().add(p);
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -71,8 +65,6 @@ public class SingleMenu_PreRegisto extends SingleLeveledMenu implements Menu {
     public String getName() {
         return "Registar";
     }
-
-
 }
 
 class RegisterStringGetter {

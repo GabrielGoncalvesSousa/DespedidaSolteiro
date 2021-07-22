@@ -1,24 +1,16 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
-import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
-
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class SingleMenu_AprovarPreRegisto extends SingleLeveledMenu implements Menu {
-    private Scanner scanner = new Scanner(System.in);
-
-    public SingleMenu_AprovarPreRegisto(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
     @Override
     public void action() {
         try {
-            ArrayList<Pessoa> pessoasNaoProvadas = getDataFilters().getContasParaAprovar();
+            ArrayList<Pessoa> pessoasNaoProvadas = getContasParaAprovar();
 
             if (pessoasNaoProvadas.isEmpty()) {
                 throw new Exception("Não existem contas aguardado aprovação.");

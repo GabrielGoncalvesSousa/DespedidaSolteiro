@@ -2,18 +2,14 @@ package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
-import estg.ipvc.gabrielSousa.menus.base.SingleLeveledMenu;
+import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
-public class SingleMenu_VerEstadoMarcacao extends SingleLeveledMenu implements Menu {
-    public SingleMenu_VerEstadoMarcacao(MainData data) {
-        super(data);
-    }
-
+public class SingleMenu_VerEstadoMarcacao extends MenuData implements Menu {
     @Override
     public void action() {
-        getData().getMarcacoes().forEach(marcacao -> {
-            if(marcacao.getCliente().equals(getData().getCurrentPessoa())){
-                System.out.println(marcacao.toString());
+        getMainData().getMarcacoes().forEach(marcacao -> {
+            if(marcacao.getCliente().equals(getMainData().getCurrentPessoa())){
+                System.out.println(marcacao);
             }
         });
     }
