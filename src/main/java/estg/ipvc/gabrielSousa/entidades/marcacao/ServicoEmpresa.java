@@ -12,7 +12,7 @@ public class ServicoEmpresa implements java.io.Serializable {
     private int precoComIva;
     private int iva;
     private String descricao;
-    private static int contador;
+    private static int contador=0;
     private boolean isAprovado;
 
     public ServicoEmpresa(Pessoa pessoa, String nomeServico, String contato,
@@ -56,7 +56,6 @@ public class ServicoEmpresa implements java.io.Serializable {
     public String toStringCliente(){
         String s = (
                 "Servico nº " + this.id_servicoEmpresa
-                        + "\n\tRequesitado por - " + this.pessoa.getPrimeiroNome().concat(" " + this.pessoa.getUltimoNome())
                         + "\n\tNome de Serviço - " + this.nomeServico
                         + "\n\tDuração de - " + this.duracao
                         + "\n\tContato do Prestador de Serviço - " + this.contato

@@ -9,7 +9,7 @@ public class Marcacao implements java.io.Serializable {
     private EstadoMarcacao estadoMarcacao;
     private ServicoEmpresa servicoEmpresa;
     private int pontuacao;
-    private static int contador;
+    private static int contador=0;
     private String data;
 
     public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa, int pontuacao,

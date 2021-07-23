@@ -4,12 +4,12 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
     @Override
     public void action() {
         try {
+            //ArrayList que ira guardar as contas em espera para aprovar
             ArrayList<Pessoa> pessoasNaoProvadas = getContasParaAprovar();
 
             if (pessoasNaoProvadas.isEmpty()) {
@@ -20,6 +20,7 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
             do{
                 verifier =optionChecker(pessoasNaoProvadas);
             } while (!verifier);
+
 
 
         } catch (Exception e) {
@@ -49,10 +50,10 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
                 }
             }
 
-            throw new Exception("\nOpção Inválida.");
+            throw new Exception();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.print("Opção Inválida. ");
             return false;
         }
     }

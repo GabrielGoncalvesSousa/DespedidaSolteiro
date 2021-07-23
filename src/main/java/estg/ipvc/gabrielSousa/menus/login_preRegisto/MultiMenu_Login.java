@@ -18,15 +18,15 @@ public class MultiMenu_Login extends MultiLeveledMenu {
 
     @Override
     public void action() {
-        System.out.println("Introduza o Login");
+        System.out.print("Introduza o Login: ");
         String login = scanner.nextLine();
-        System.out.println("Introduza a password");
+        System.out.print("Introduza a password: ");
         String password = scanner.nextLine();
 
         getMainData().setCurrentPessoa(null);
 
         try {
-            //Return true if user exists exists
+            //Return true if user exists
             if (!checkIfLoginAndPasswordExists(login, password)) {
                 throw new Exception("Credencias Inválidas");
             } else if (!getMainData().getCurrentPessoa().isAprovado()) {
