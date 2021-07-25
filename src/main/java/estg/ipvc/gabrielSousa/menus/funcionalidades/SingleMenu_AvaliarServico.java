@@ -1,4 +1,5 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
+
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
@@ -11,69 +12,51 @@ public class SingleMenu_AvaliarServico extends MenuData implements Menu {
     public void action() {
 
         try {
-            ArrayList<Marcacao> marcacoesDisponiveisParaAvaliar = new ArrayList<>();
+            ArrayList<Marcacao> marcacoesDisponiveisParaAvaliar = getMarcadoesDisponiveisParaAvaliar();
 
-            getMainData().getMarcacoes().forEach(marcacao -> {
-                if (marcacao.getCliente().equals(getMainData().getCurrentPessoa()) &&
-                        marcacao.getEstadoMarcacao().getId_estadoMarcacao() == 2) {
-                    System.out.println(marcacao.toString());
-                    marcacoesDisponiveisParaAvaliar.add(marcacao);
-                }
-            });
-
-
-            if(marcacoesDisponiveisParaAvaliar.isEmpty()){
+            //Checkar se o utilizador nao tem nenhuma marcacao concluida
+            if (marcacoesDisponiveisParaAvaliar.isEmpty()) {
                 System.out.println("Sem Marcações concluidas para avaliar");
                 throw new Exception();
             }
 
-            System.out.print("Indique qual a marcação que pretende avaliar: ");
-            int marcid = Integer.parseInt(scanner.nextLine());
+            //Obter a marcacao a avaliar
+            int marcid = getIdMaracaoParaAvaliarDisponiveis(marcacoesDisponiveisParaAvaliar);
+            Marcacao marcacaoEscolhida = getMainData().getMarcacoes().get(marcid);
 
-            while (!checkMarcacaoEscolhida(marcid, marcacoesDisponiveisParaAvaliar)) {
-                System.out.print("Marcação Inválida, selecione outra: ");
-                marcid = Integer.parseInt(scanner.nextLine());
-            }
+            //Obter Pontuacao
+            int pontuacao = getPontuacao();
 
-            int pontuacao;
-            System.out.print("Indique a pontuação que pretende dar de 1-5: ");
-            pontuacao = Integer.parseInt(scanner.nextLine());
+            //Adicionar a pontuacao
+            marcacaoEscolhida.setPontuacao(pontuacao);
 
-            while (!checkPontuacao(pontuacao)) {
-                System.out.print("Pontuação inválida, selecione entre 1-5: ");
-                pontuacao = Integer.parseInt(scanner.nextLine());
-            }
+            //Guardar os dados no ficheiro
+            getSerialization().saveData(getMainData());
 
-            int finalMarcid = marcid;
-            int finalPontuacao = pontuacao;
-            getMainData().getMarcacoes().forEach(marcacao -> {
-                if (marcacao.getId_marcacao() == finalMarcid) {
-                    marcacao.setPontuacao(finalPontuacao);
-                }
-            });
 
             System.out.println("Pontuação adicionda com sucesso.");
+
         } catch (Exception e) {
 
         }
-
-
     }
 
-    public boolean checkMarcacaoEscolhida(int id, ArrayList<Marcacao> marcacoesDisponiveisParaAvaliar) {
-        for (Marcacao marcacao : marcacoesDisponiveisParaAvaliar) {
-            if (marcacao.getId_marcacao() == id) {
-                return true;
+    private int getPontuacao() {
+        int pontuacao = -1;
+        boolean aux = false;
+        do {
+            try {
+                System.out.print("Indique a pontuação que pretende dar de 1-5: ");
+                pontuacao = Integer.parseInt(scanner.nextLine());
+                if (pontuacao > 5 || pontuacao < 1) {
+                    throw new Exception();
+                }
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. ");
             }
-        }
-        return false;
-    }
-
-    public boolean checkPontuacao(int pont) {
-        if (pont > 5 || pont < 1) {
-            return false;
-        }
-        return true;
+        } while (!aux);
+        return pontuacao;
     }
 
     @Override

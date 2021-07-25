@@ -11,7 +11,7 @@ public class MainData implements java.io.Serializable {
     private final ArrayList<TipoPessoa> tpPessoas = new ArrayList<>();
     private final ArrayList<ServicoEmpresa> servicoEmpresas = new ArrayList<>();
     private final ArrayList<Marcacao> marcacoes = new ArrayList<>();
-    private final ArrayList <EstadoMarcacao> estadoMarcacaos = new ArrayList<>();
+    private final ArrayList<EstadoMarcacao> estadoMarcacaos = new ArrayList<>();
     private final ArrayList<Localidade> localidades = new ArrayList<>();
     private final ArrayList<Distrito> distritos = new ArrayList<>();
     private Pessoa currentPessoa;
@@ -38,16 +38,28 @@ public class MainData implements java.io.Serializable {
                 , "gabrielsousa@ipvc.pt", "915875985"));
         pessoas.add(new Funcionario(tpPessoas.get(1), "funcionario", "123", "Nuno", "Oliveira"
                 , "nunoOliveira@ipvc.pt", "934506842"));
-        pessoas.add(new FornecedorServico(tpPessoas.get(2), "servico", "123", "Servico", "Banana"
-                , "servico@ipvc.pt", "93454578"));
+
+        //Popular estados de marcacao
+        estadoMarcacaos.add(new EstadoMarcacao(0, "Aguardando Aprovação"));
+        estadoMarcacaos.add(new EstadoMarcacao(1, "Aprovado"));
+        estadoMarcacaos.add(new EstadoMarcacao(2, "Concluido"));
+
+/*
+        FornecedorServico fornecedorServico = new FornecedorServico(tpPessoas.get(2), "servico", "123", "Servico", "Banana"
+                , "servico@ipvc.pt", "93454578");
+        fornecedorServico.setAprovado(true);
+        pessoas.add(fornecedorServico);
 
         Cliente clienteAprovado = new Cliente(tpPessoas.get(3), "cliente", "123", "Cliente", "Banana"
                 , "banana@ipvc.pt", "93453295");
         clienteAprovado.setAprovado(true);
         pessoas.add(clienteAprovado);
 
+
+
         pessoas.add(new Cliente(tpPessoas.get(3), "loginfixe", "123", "ClienteSemMarcacoes", "Banana"
                 , "clienteSemMarcacoes@ipvc.pt", "93453295"));
+
 
         //Popular localidades de viana
         localidades.add(new Localidade("4900-764",distritos.get(0),"Rua Abade Fanha"));
@@ -58,15 +70,12 @@ public class MainData implements java.io.Serializable {
         servicoEmpresas.add(new ServicoEmpresa(getPessoas().get(3), "Banana Catcher", "932133123", "forever"
         ,getLocalidades().get(0),222,23,"As bananas todas que conseguires"));
 
-        //Popular estados de marcacao
-        estadoMarcacaos.add(new EstadoMarcacao(0,"Aguardando Aprovação"));
-        estadoMarcacaos.add(new EstadoMarcacao(1,"Aprovado"));
-        estadoMarcacaos.add(new EstadoMarcacao(2,"Concluido"));
 
         //Popular marcacoes
         marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(0), servicoEmpresas.get(0), 0,"12/12/12"));
         marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(2), servicoEmpresas.get(0), 3,"12/12/12"));
         marcacoes.add(new Marcacao(getPessoas().get(3),estadoMarcacaos.get(2), servicoEmpresas.get(0), 3,"12/12/12"));
+*/
 
     }
 

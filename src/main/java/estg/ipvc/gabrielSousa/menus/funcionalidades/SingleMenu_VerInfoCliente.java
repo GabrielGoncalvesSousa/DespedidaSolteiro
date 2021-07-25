@@ -8,7 +8,7 @@ public class SingleMenu_VerInfoCliente extends MenuData implements Menu {
 
     @Override
     public void action() {
-                                     getAllClientInfo();
+        getAllClientInfo();
     }
 
     @Override

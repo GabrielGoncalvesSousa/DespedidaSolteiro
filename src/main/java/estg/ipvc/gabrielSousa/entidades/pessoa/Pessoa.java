@@ -9,7 +9,7 @@ public class Pessoa implements java.io.Serializable {
     private String ultimoNome;
     private String email;
     private String contato;
-    private static int contadorPessoa;
+    private static int contadorPessoa=0;
     private boolean isAprovado;
 
     public Pessoa(TipoPessoa tipoPessoa, String login, String password,

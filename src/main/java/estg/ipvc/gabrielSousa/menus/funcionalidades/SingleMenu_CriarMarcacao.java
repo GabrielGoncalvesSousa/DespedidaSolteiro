@@ -6,75 +6,57 @@ import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 
 public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
     @Override
     public void action() {
 
-        getMainData().getDistritos().forEach(distrito -> {
-            System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
-        });
+        //Prints dos distritos
+        printDistritos();
+        int disId = getIdDistrito();
 
-        System.out.print("Introduza o distrito que pretende: ");
-        int disId = Integer.parseInt(scanner.nextLine());
+        //Getting os servicos disponiveis no distrito
+        ArrayList<ServicoEmpresa> servicosDisponiveis = getServicosDisponiveisPorDistrito(disId);
 
-        while (disId >= 20 || disId <= 0) {
-            System.out.println("Opção Inválida, selecione outra vez: ");
-            disId = Integer.parseInt(scanner.nextLine());
-        }
-
-        ArrayList<ServicoEmpresa> servicosDisponiveis = new ArrayList<>();
-
-       for(ServicoEmpresa servEmp : getMainData().getServicoEmpresas()){
-           if(servEmp.getLocalidade().getDistrito().getId_distrito()==disId){
-               servicosDisponiveis.add(servEmp);
-           }
-       }
-
+        //Se nao houver servicos volta a pedir outro distrito
         while (servicosDisponiveis.isEmpty()) {
             System.out.println("Nenhum serviço disponivel no distrito selecionado");
-            System.out.println("Selecione outro distrito: ");
-            disId = Integer.parseInt(scanner.nextLine());
-
-            for (ServicoEmpresa servicoEmpresa: getMainData().getServicoEmpresas()){
-                if(servicoEmpresa.getLocalidade().getDistrito().getId_distrito()==disId){
-                    servicosDisponiveis.add(servicoEmpresa);
-                }
-            }
+            disId = getIdDistrito();
+            servicosDisponiveis = getServicosDisponiveisPorDistrito(disId);
         }
 
+        //Informacao do servico adaptada ao cliente, precoTotal=preco*1.35
         servicosDisponiveis.forEach(distri -> {
             System.out.println(distri.toStringCliente());
         });
 
+        //Get servico que pretende com verificacao
+        int idServico = getIdServicoPorServicosDisponiveis(servicosDisponiveis);
 
+        //Buscar a referencia do objeto desse servico
+        ServicoEmpresa servicoSelecionado = getMainData().getServicoEmpresas().get(idServico);
 
-
-        System.out.print("Introduza o serviço que pretende: ");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        while (!servidoIdChecker(id,servicosDisponiveis)) {
-            System.out.print("Introduza um serviço válido: ");
-            id = Integer.parseInt(scanner.nextLine());
-        }
-
-
-       ServicoEmpresa servicoSelecionado = null;
-
-        for(ServicoEmpresa servE: servicosDisponiveis){
-            if(servE.getId_servicoEmpresa()==id){
-                servicoSelecionado=servE;
-            }
-        }
-
+        //Get data
         System.out.print("Introduza a data que pretende: ");
         String dataPretendida = scanner.nextLine();
+        while (dataPretendida.isEmpty()) {
+            System.out.print("Opção Inválida. Introduza a data que pretenda: ");
+            dataPretendida = scanner.nextLine();
+        }
 
+        Marcacao marcacao = new Marcacao(
+                getMainData().getCurrentPessoa(),
+                getMainData().getEstadoMarcacaos().get(0),
+                servicoSelecionado, 0, dataPretendida
+        );
 
-        getMainData().getMarcacoes().add(new Marcacao(getMainData().getCurrentPessoa(), getMainData().getEstadoMarcacaos().get(0), servicoSelecionado, 0, dataPretendida));
-        System.out.println("Adicionado com sucesso");
+        //Adicionar a marcacao na lista
+        getMainData().getMarcacoes().add(marcacao);
+        System.out.println("Marcação adicionada com sucesso");
+
+        //Guardar os dados no ficheiro
+        getSerialization().saveData(getMainData());
 
     }
 
@@ -83,12 +65,4 @@ public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
         return "Criar Marcação";
     }
 
-    public boolean servidoIdChecker(int id, ArrayList<ServicoEmpresa> servicoDisponiveis) {
-        for (ServicoEmpresa se : servicoDisponiveis) {
-            if (se.getId_servicoEmpresa() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

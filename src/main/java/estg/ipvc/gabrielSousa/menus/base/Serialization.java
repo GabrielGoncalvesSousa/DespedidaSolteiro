@@ -13,7 +13,6 @@ public class Serialization  {
             out.writeObject(data);
             out.close();
             fileOut.close();
-            System.out.print("Dados guardados em data.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }

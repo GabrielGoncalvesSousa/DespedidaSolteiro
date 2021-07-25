@@ -1,18 +1,16 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
-import estg.ipvc.gabrielSousa.entidades.MainData;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
     @Override
     public void action() {
         try {
-            ArrayList<ServicoEmpresa> servicosNaoAprovados =getContasServicosEmpresaParaAprovar();
+            ArrayList<ServicoEmpresa> servicosNaoAprovados = getServicosEmpresaParaAprovar();
 
             if (servicosNaoAprovados.isEmpty()) {
                 throw new Exception("Não existem serviços aguardando aprovação.");
@@ -20,7 +18,7 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
 
             boolean verifier;
             do {
-                verifier=optionChecker(servicosNaoAprovados);
+                verifier = optionChecker(servicosNaoAprovados);
             } while (!verifier);
 
         } catch (Exception e) {
@@ -43,14 +41,16 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
                 if (se.getId_servicoEmpresa() == id) {
                     se.setAprovado(true);
                     System.out.println("\nServiço Aprovado com Sucesso.");
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
                     return true;
                 }
             }
 
-            throw new Exception("\nOpção Inválida.");
+            throw new Exception();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.print("Opção Inválida. ");
             return false;
         }
     }
