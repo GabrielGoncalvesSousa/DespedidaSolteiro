@@ -9,8 +9,6 @@ public class Main {
         MultiMenu_MainMenu multiMenuMainMenu = new MultiMenu_MainMenu();
         multiMenuMainMenu.run();
 
-        /*MainData data = new MainData();
-        Serialization serialization = new Serialization();
-        serialization.saveData(data);*/
+
     }
 }

@@ -14,7 +14,10 @@ import java.util.Scanner;
 
 public abstract class MenuData implements Menu {
     private static final Serialization serialization = new Serialization();
-    private static MainData mainData = serialization.loadData();
+    private static MainData mainData =  new MainData();
+
+    //private static MainData mainData = serialization.loadData();
+
     public static Scanner scanner = new Scanner(System.in);
 
     public static Serialization getSerialization() {
@@ -137,7 +140,7 @@ public abstract class MenuData implements Menu {
 
         //Getting all clients
         mainData.getPessoas().forEach(pessoa -> {
-            if (pessoa instanceof Cliente && pessoa.isAprovado()) {
+            if (pessoa instanceof Cliente && pessoa.isAprovado() ) {
                 pessoaClientes.add(pessoa);
             }
         });

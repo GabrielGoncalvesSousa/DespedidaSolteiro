@@ -1,5 +1,7 @@
 package estg.ipvc.gabrielSousa.menus.login_preRegisto;
 
+import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
+import estg.ipvc.gabrielSousa.entidades.pessoa.FornecedorServico;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 import estg.ipvc.gabrielSousa.menus.base.*;
@@ -53,16 +55,36 @@ public class SingleMenu_PreRegisto extends MenuData implements Menu {
             //getting contato
             String contato = registerStringGetter.getContato();
 
-            Pessoa p = new Pessoa(tipoPessoa, login, password, primeiroNome, ulimoNome,
-                    email, contato, false);
 
-            //Adicionar no arrayList
-            getMainData().getPessoas().add(p);
+            switch (tipoPessoa.getId_tipoPessoa()) {
+                //Criar Fornecedor
+                case 2 -> {
+                    FornecedorServico fornecedorServico = new FornecedorServico(tipoPessoa, login, password, primeiroNome, ulimoNome,
+                            email, contato);
 
-            System.out.println("Conta criada com sucesso. Aguarde Aprovação.");
+                    //Adicionar no arrayList
+                    getMainData().getPessoas().add(fornecedorServico);
 
-            //Guardar os dados no ficheiro
-            getSerialization().saveData(getMainData());
+                    System.out.println("Conta criada com sucesso. Aguarde Aprovação.");
+
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
+                }
+
+                //Criar cliente
+                case 3 -> {
+                    Cliente cliente = new Cliente(tipoPessoa, login, password, primeiroNome, ulimoNome,
+                            email, contato);
+
+                    //Adicionar no arrayList
+                    getMainData().getPessoas().add(cliente);
+
+                    System.out.println("Conta criada com sucesso. Aguarde Aprovação.");
+
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
+                }
+            }
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -135,11 +157,11 @@ class RegisterStringGetter {
     }
 
     public int getTipoUtilizador() {
-        int tipoUtilizador=-1;
-        try{
+        int tipoUtilizador = -1;
+        try {
             System.out.print("Introduza o tipo de utilizador: ");
             tipoUtilizador = Integer.parseInt(scanner.nextLine());
-        }catch (Exception e){
+        } catch (Exception e) {
         }
 
         return tipoUtilizador;
