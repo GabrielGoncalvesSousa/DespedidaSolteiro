@@ -44,7 +44,7 @@ public class MainData implements java.io.Serializable {
         estadoMarcacaos.add(new EstadoMarcacao(1, "Aprovado"));
         estadoMarcacaos.add(new EstadoMarcacao(2, "Concluido"));
 
-/*
+
         FornecedorServico fornecedorServico = new FornecedorServico(tpPessoas.get(2), "servico", "123", "Servico", "Banana"
                 , "servico@ipvc.pt", "93454578");
         fornecedorServico.setAprovado(true);
@@ -55,7 +55,7 @@ public class MainData implements java.io.Serializable {
         clienteAprovado.setAprovado(true);
         pessoas.add(clienteAprovado);
 
-
+/*
 
         pessoas.add(new Cliente(tpPessoas.get(3), "loginfixe", "123", "ClienteSemMarcacoes", "Banana"
                 , "clienteSemMarcacoes@ipvc.pt", "93453295"));

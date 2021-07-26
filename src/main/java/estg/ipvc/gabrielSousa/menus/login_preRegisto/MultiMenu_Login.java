@@ -19,9 +19,9 @@ public class MultiMenu_Login extends MultiLeveledMenu {
     @Override
     public void action() {
         System.out.print("Introduza o Login: ");
-        String login = scanner.nextLine();
+        String login = getScanner().nextLine();
         System.out.print("Introduza a password: ");
-        String password = scanner.nextLine();
+        String password = getScanner().nextLine();
 
         getMainData().setCurrentPessoa(null);
 

@@ -6,6 +6,10 @@ import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
@@ -21,13 +25,13 @@ public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
         //Verificar se o nome ja nao foi utilizado
         while (!auxBoolean) {
             System.out.print("Nome de serviço já usado. Escolha outro: ");
-            nomeServico = scanner.nextLine();
+            nomeServico = getScanner().nextLine();
             auxBoolean = verificaNomeServico(nomeServico);
         }
 
         //Obter dados do servico com o helper
         String contato = stringHelper.getContatoSer();
-        String duracao = stringHelper.getDuracaoSer();
+        Duration duracao = stringHelper.getDuracaoSer();
 
         //Get iva e verificar se nao está a ser introduzido uma string nem numeros negativos
         System.out.print("Introduza o Iva: ");
@@ -91,6 +95,7 @@ public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
 
 class RegisterServicoEmpresaStringGetter {
     private final Scanner scanner = new Scanner(System.in);
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("k:m");
 
     public String getNomeServico() {
         System.out.print("Introduza o Nome do Serviço: ");
@@ -114,16 +119,21 @@ class RegisterServicoEmpresaStringGetter {
         return contato;
     }
 
-    public String getDuracaoSer() {
-
-        System.out.print("Introduza a duração do serviço em horas:minutos : ");
-        String duracaoSer = scanner.nextLine();
-
-        while (duracaoSer.isEmpty()) {
-            System.out.print("Campo de duração vazio, Introduza a duração: ");
-            duracaoSer = scanner.nextLine();
-        }
-        return duracaoSer;
+    public Duration getDuracaoSer() {
+        boolean aux = false;
+        Duration duracaoConvertida =Duration.ZERO;
+        do {
+            try {
+                System.out.print("Introduza a duração do serviço em horas:minutos Exemplo - '1:30' : ");
+                String duracaoSer = scanner.nextLine();
+                LocalTime localTime = LocalTime.parse(duracaoSer, timeFormatter);
+                duracaoConvertida = duracaoConvertida.plusHours(localTime.getHour()).plusMinutes(localTime.getMinute());
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Duração Inválida.");
+            }
+        } while (!aux);
+        return duracaoConvertida;
     }
 
     public String getDescricaoSer() {

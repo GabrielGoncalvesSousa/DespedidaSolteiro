@@ -47,7 +47,7 @@ public class SingleMenu_AvaliarServico extends MenuData implements Menu {
         do {
             try {
                 System.out.print("Indique a pontuação que pretende dar de 1-5: ");
-                pontuacao = Integer.parseInt(scanner.nextLine());
+                pontuacao = Integer.parseInt(getScanner().nextLine());
                 if (pontuacao > 5 || pontuacao < 1) {
                     throw new Exception();
                 }

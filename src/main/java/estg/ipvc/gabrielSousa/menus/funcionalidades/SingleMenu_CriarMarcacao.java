@@ -5,6 +5,7 @@ import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -37,13 +38,7 @@ public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
         //Buscar a referencia do objeto desse servico
         ServicoEmpresa servicoSelecionado = getMainData().getServicoEmpresas().get(idServico);
 
-        //Get data
-        System.out.print("Introduza a data que pretende: ");
-        String dataPretendida = scanner.nextLine();
-        while (dataPretendida.isEmpty()) {
-            System.out.print("Opção Inválida. Introduza a data que pretenda: ");
-            dataPretendida = scanner.nextLine();
-        }
+        LocalDateTime dataPretendida = getDate();
 
         Marcacao marcacao = new Marcacao(
                 getMainData().getCurrentPessoa(),
@@ -63,6 +58,24 @@ public class SingleMenu_CriarMarcacao extends MenuData implements Menu {
     @Override
     public String getName() {
         return "Criar Marcação";
+    }
+
+    private LocalDateTime getDate() {
+        boolean aux = false;
+        LocalDateTime dataConvertida = LocalDateTime.now();
+        do {
+            try {
+                //Get data
+                System.out.print("Introduza a data que pretende em formato dia/mes/ano hora:minuto. Exemplo - " + LocalDateTime.now().format(getDateTimeFormatter()) + " : ");
+                String dataPretendida = getScanner().nextLine();
+                dataConvertida = LocalDateTime.parse(dataPretendida, getDateTimeFormatter());
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Data Inválida. ");
+            }
+        } while (!aux);
+
+        return dataConvertida;
     }
 
 }

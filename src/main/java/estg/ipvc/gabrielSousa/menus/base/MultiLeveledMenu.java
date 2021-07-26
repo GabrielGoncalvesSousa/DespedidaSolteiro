@@ -27,7 +27,7 @@ public abstract class MultiLeveledMenu extends MenuData implements Menu {
      * An helper function to read an option from the command line
      */
     int readOption() {
-        return Integer.parseUnsignedInt(scanner.nextLine());
+        return Integer.parseUnsignedInt(getScanner().nextLine());
     }
 
     /**

@@ -35,7 +35,7 @@ public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
     public boolean optionChecker(ArrayList<ServicoEmpresa> servicosNaoAprovados) {
         try {
             System.out.print("Escolha um serviço a aprovar: ");
-            int id = Integer.parseInt(scanner.nextLine());
+            int id = Integer.parseInt(getScanner().nextLine());
 
             for (ServicoEmpresa se : servicosNaoAprovados) {
                 if (se.getId_servicoEmpresa() == id) {
