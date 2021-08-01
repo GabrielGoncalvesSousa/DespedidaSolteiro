@@ -1,19 +1,19 @@
 package estg.ipvc.gabrielSousa.entidades.marcacao;
-
-import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Marcacao implements java.io.Serializable {
     private int id_marcacao;
-    private Pessoa cliente;
+    private final Pessoa cliente;
     private EstadoMarcacao estadoMarcacao;
     private ServicoEmpresa servicoEmpresa;
     private int pontuacao;
-    private static int contador;
-    private String data;
+    private static int contador=0;
+    private final LocalDateTime data;
 
     public Marcacao(Pessoa cliente,EstadoMarcacao estadoMarcacao, ServicoEmpresa servicoEmpresa, int pontuacao,
-                    String data) {
+                    LocalDateTime data) {
         this.id_marcacao=contador;
         contador+=1;
         this.cliente=cliente;
@@ -39,14 +39,6 @@ public class Marcacao implements java.io.Serializable {
         this.estadoMarcacao = estadoMarcacao;
     }
 
-    public void setId_marcacao(int id_marcacao) {
-        this.id_marcacao = id_marcacao;
-    }
-
-    public void setServicoEmpresa(ServicoEmpresa servicoEmpresa) {
-        this.servicoEmpresa = servicoEmpresa;
-    }
-
     public int getPontuacao() {
         return pontuacao;
     }
@@ -55,7 +47,7 @@ public class Marcacao implements java.io.Serializable {
         this.pontuacao = pontuacao;
     }
 
-    public String getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
@@ -64,11 +56,13 @@ public class Marcacao implements java.io.Serializable {
         String marcacao = ("\n\tMarcação nº "+this.id_marcacao
                 +"\n\t\t Empresa da Marcação - "+ this.servicoEmpresa.getNomeServico()
                 +"\n\t\t Estado da Marcação - "+this.getEstadoMarcacao().getNomeEstadoMarcacao()
-                +"\n\t\t Localização da Marcação - "+this.getServicoEmpresa().getLocalidade().getNomeLocalidade()
-                +" no Distrito de "+this.getServicoEmpresa().getLocalidade().getDistrito().getNomeDistrito()
-                +"\n\t\t Preço do Serviço - "+String.format("%.2f",this.getServicoEmpresa().getPrecoComIva()*1.35)
-                +"\n\t\t Duração do Serviço - "+this.getServicoEmpresa().getDuracao()
-                +"\n\t\t Data - "+this.getData()
+                +"\n\t\t Localidade -" +
+                    "\n\t\t\tCodigo-Postal: "+this.servicoEmpresa.getLocalidade().getCodigo_postal()+
+                    "\n\t\t\tRua: " + this.servicoEmpresa.getLocalidade().getNomeLocalidade() +
+                    "\n\t\t\tDistrito:" + this.servicoEmpresa.getLocalidade().getDistrito().getNomeDistrito()
+                +"\n\t\t Preço do Serviço - "+String.format("%.2f",this.getServicoEmpresa().getPrecoComIva()*1.35)+"€"
+                +"\n\t\t Duração do Serviço - "+this.getServicoEmpresa().getDuracao().toHoursPart()+" horas e "+this.getServicoEmpresa().getDuracao().toMinutesPart()+ " minutos"
+                +"\n\t\t Data - "+this.getData().format(DateTimeFormatter.ofPattern("d/M/y H:mm"))
                 );
         if (this.pontuacao!=0){
             marcacao+=("\n\t\t Pontuação do Serviço - "+this.getPontuacao());

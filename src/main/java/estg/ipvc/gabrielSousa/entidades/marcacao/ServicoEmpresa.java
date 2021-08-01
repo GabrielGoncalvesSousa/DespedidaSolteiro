@@ -2,21 +2,23 @@ package estg.ipvc.gabrielSousa.entidades.marcacao;
 
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 
+import java.time.Duration;
+
 public class ServicoEmpresa implements java.io.Serializable {
     private int id_servicoEmpresa;
     private Pessoa pessoa;
     private String nomeServico;
     private String contato;
-    private String duracao;
+    private Duration duracao;
     private Localidade localidade;
     private int precoComIva;
     private int iva;
     private String descricao;
-    private static int contador;
+    private static int contador = 0;
     private boolean isAprovado;
 
     public ServicoEmpresa(Pessoa pessoa, String nomeServico, String contato,
-                          String duracao, Localidade localidade, int precoComIva,
+                          Duration duracao, Localidade localidade, int precoComIva,
                           int iva, String descricao) {
         this.id_servicoEmpresa = contador;
         contador += 1;
@@ -42,27 +44,29 @@ public class ServicoEmpresa implements java.io.Serializable {
                 "Servico nº " + this.id_servicoEmpresa
                         + "\n\tRequesitado por - " + this.pessoa.getPrimeiroNome().concat(" " + this.pessoa.getUltimoNome())
                         + "\n\tNome de Serviço - " + this.nomeServico
-                        + "\n\tDuração de - " + this.duracao
+                        + "\n\tDuração de - " + this.duracao.toHoursPart() + " horas e " + this.duracao.toMinutesPart() + " minutos"
                         + "\n\tContato do Prestador de Serviço - " + this.contato
-                        + "\n\tLocalidade - " + this.localidade.getNomeLocalidade() + " distrito de " + this.localidade.getDistrito().getNomeDistrito()
-                        + "\n\tPreço com Iva - " + this.precoComIva
-                        + "\n\tIva do Serviço - " + this.iva
+                        + "\n\tLocalidade -  "
+                            + "\n\t\tCodigo-Postal: " + this.localidade.getCodigo_postal()
+                            + "\n\t\tRua: " + this.localidade.getNomeLocalidade()
+                            + "\n\t\tDistrito:" + this.localidade.getDistrito().getNomeDistrito()
+                        + "\n\tPreço com Iva - " + this.precoComIva + "€"
+                        + "\n\tIva do Serviço - " + this.iva + "%"
                         + "\n\tDescrição do Serviço - " + this.descricao
         );
 
         return s;
     }
 
-    public String toStringCliente(){
+    public String toStringCliente() {
         String s = (
                 "Servico nº " + this.id_servicoEmpresa
-                        + "\n\tRequesitado por - " + this.pessoa.getPrimeiroNome().concat(" " + this.pessoa.getUltimoNome())
                         + "\n\tNome de Serviço - " + this.nomeServico
-                        + "\n\tDuração de - " + this.duracao
+                        + "\n\tDuração de - " + this.duracao.toHoursPart() + " horas e " + this.duracao.toMinutesPart() + " minutos"
                         + "\n\tContato do Prestador de Serviço - " + this.contato
-                        + "\n\tLocalidade - " + this.localidade.getNomeLocalidade() + " distrito de " + this.localidade.getDistrito().getNomeDistrito()
-                        + "\n\tPreço com Iva - " +String.format("%.2f",this.precoComIva *1.35)
-                        + "\n\tIva do Serviço - " + this.iva
+                        + "\n\tLocalidade -  \n\t\tCodigo-Postal: " + this.localidade.getCodigo_postal() + "\n\t\tRua: " + this.localidade.getNomeLocalidade() + "\n\t\tDistrito:" + this.localidade.getDistrito().getNomeDistrito()
+                        + "\n\tPreço com Iva - " + String.format("%.2f", this.precoComIva * 1.35) + "€"
+                        + "\n\tIva do Serviço - " + this.iva + "%"
                         + "\n\tDescrição do Serviço - " + this.descricao
         );
         return s;
@@ -84,11 +88,15 @@ public class ServicoEmpresa implements java.io.Serializable {
         return nomeServico;
     }
 
-    public String getDuracao() {
+    public Duration getDuracao() {
         return duracao;
     }
 
     public int getPrecoComIva() {
         return precoComIva;
+    }
+
+    public Pessoa getPessoa(){
+        return pessoa;
     }
 }

@@ -4,36 +4,41 @@
  * and open the template in the editor.
  */
 package estg.ipvc.gabrielSousa.menus.base;
-
-
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Stack;
 
 public abstract class MultiLeveledMenu extends MenuData implements Menu {
-    /**Constant static definitions for the Options Menu classe*/
+    /**
+     * Constant static definitions for the Options Menu classe
+     */
     private static final String MENU_FORMAT = "%2d - %s";
     private static final String LABEL_SELECT_OPTION = "Please select an option: ";
     private static final String LABEL_BAD_INPUT = "[error] The provided input is not a valid option";
 
 
-
-    public MultiLeveledMenu(){
+    public MultiLeveledMenu() {
 
     }
-
-    /**An helper function to read an option from the command line */
+    /**
+     * An helper function to read an option from the command line
+     */
     int readOption() {
-        return Integer.parseUnsignedInt(scanner.nextLine());
+        return Integer.parseUnsignedInt(getScanner().nextLine());
     }
 
-    /**The last selected submenu */
+    /**
+     * The last selected submenu
+     */
     private Menu lastSelectedSubMenu;
 
-    /**The options for this menu **/
+    /**
+     * The options for this menu
+     **/
     private Menu[] menus;
 
-    /**Constructor takes the array of options for this menu@param options */
+    /**
+     * Constructor takes the array of options for this menu@param options
+     */
     public MultiLeveledMenu(Menu[] options) {
         if (options == null || options.length == 0) {
             throw new IllegalArgumentException("Empty or null options is not supported");
@@ -42,8 +47,9 @@ public abstract class MultiLeveledMenu extends MenuData implements Menu {
     }
 
 
-
-    /**Prints the title of the Menu */
+    /**
+     * Prints the title of the Menu
+     */
     private void printTitle() {
         String name = this.getName();
         System.out.println();
@@ -94,7 +100,7 @@ public abstract class MultiLeveledMenu extends MenuData implements Menu {
         return null;
     }
 
-    public void stackManipulation(){
+    public void stackManipulation() {
         while (!menusStack.empty()) {
             Menu currentMenu = menusStack.peek();
             currentMenu.action();
@@ -111,7 +117,7 @@ public abstract class MultiLeveledMenu extends MenuData implements Menu {
         }
     }
 
-    public final void addMenu(Menu menu){
+    public final void addMenu(Menu menu) {
         menusStack.push(menu);
         stackManipulation();
     }

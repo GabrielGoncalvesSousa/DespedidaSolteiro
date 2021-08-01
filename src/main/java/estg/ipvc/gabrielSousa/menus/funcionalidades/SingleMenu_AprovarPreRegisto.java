@@ -4,12 +4,12 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import java.util.ArrayList;
-import java.util.Scanner;
 
-public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
+public class SingleMenu_AprovarPreRegisto extends MenuData {
     @Override
     public void action() {
         try {
+            //ArrayList que ira guardar as contas em espera para aprovar
             ArrayList<Pessoa> pessoasNaoProvadas = getContasParaAprovar();
 
             if (pessoasNaoProvadas.isEmpty()) {
@@ -20,6 +20,7 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
             do{
                 verifier =optionChecker(pessoasNaoProvadas);
             } while (!verifier);
+
 
 
         } catch (Exception e) {
@@ -36,20 +37,23 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
     public boolean optionChecker(ArrayList<Pessoa> pessoasNaoProvadas) {
         try {
             System.out.print("Escolha um utilizador a aprovar: ");
-            int id = Integer.parseInt(scanner.nextLine());
+            int id = Integer.parseInt(getScanner().nextLine());
 
             for (Pessoa p : pessoasNaoProvadas) {
                 if (p.getId_pessoa() == id) {
                     p.setAprovado(true);
                     System.out.println("\nUtilizador Aprovado com sucesso.");
+
+                    //Guardar os dados no ficheiro
+                    getSerialization().saveData(getMainData());
                     return true;
                 }
             }
 
-            throw new Exception("\nOpção Inválida.");
+            throw new Exception();
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.print("Opção Inválida. ");
             return false;
         }
     }

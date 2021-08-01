@@ -7,22 +7,38 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public abstract class MenuData implements Menu{
-   private static final Serialization serialization = new Serialization();
+
+public abstract class MenuData implements Menu {
+    private static final Serialization serialization = new Serialization();
     private static MainData mainData = serialization.loadData();
-    public static Scanner scanner = new Scanner(System.in);
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/y");
+    private static Scanner scanner = new Scanner(System.in);
 
-    public MainData getMainData(){
+    public static DateTimeFormatter getDateFormatter() {
+        return dateFormatter;
+    }
+
+
+    public static Serialization getSerialization() {
+        return serialization;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public MainData getMainData() {
         return mainData;
     }
 
+    //Checkar se o mail existe
     public boolean checkIfMailExists(String mail) {
         try {
-            for (Pessoa p :mainData.getPessoas()) {
+            for (Pessoa p : mainData.getPessoas()) {
                 if (p.getEmail().equals(mail)) {
                     throw new Exception();
                 }
@@ -33,6 +49,7 @@ public abstract class MenuData implements Menu{
         return false;
     }
 
+    //Checkar se o login existe
     public boolean checkIfLoginExists(String login) {
         try {
             for (Pessoa p : mainData.getPessoas()) {
@@ -40,17 +57,18 @@ public abstract class MenuData implements Menu{
                     throw new Exception();
                 }
             }
-
         } catch (Exception e) {
             return true;
         }
         return false;
     }
 
+    //Checkar o login
     public boolean checkIfLoginAndPasswordExists(String login, String password) {
         try {
             for (Pessoa p : mainData.getPessoas()) {
-                if (p.login(login, password)) { mainData.setCurrentPessoa(p);
+                if (p.login(login, password)) {
+                    mainData.setCurrentPessoa(p);
                     return true;
                 }
             }
@@ -60,7 +78,8 @@ public abstract class MenuData implements Menu{
         return false;
     }
 
-    public void getTiposParaPreRegisto() {
+    //Imprimir os tipo de utilizadores disponiveis para o pre registo
+    public void getTiposDeUtilizadorParaPreRegisto() {
 
         for (TipoPessoa tp : mainData.getTpPessoas()) {
             if (tp.getId_tipoPessoa() == 2 | tp.getId_tipoPessoa() == 3)
@@ -68,6 +87,7 @@ public abstract class MenuData implements Menu{
         }
     }
 
+    //Obter o tipo de pessoa selecionada para o registo atraves do id
     public TipoPessoa getTipoPessoaSelecionadaParaRegisto(int id_tp) {
         try {
             for (TipoPessoa tipoPessoa : mainData.getTpPessoas()) {
@@ -99,12 +119,12 @@ public abstract class MenuData implements Menu{
 
 
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
         return pessoasNaoProvadas;
     }
 
-    public ArrayList<ServicoEmpresa> getContasServicosEmpresaParaAprovar() {
+    public ArrayList<ServicoEmpresa> getServicosEmpresaParaAprovar() {
         ArrayList<ServicoEmpresa> servicosNaoAprovados = new ArrayList<>();
 
         try {
@@ -116,18 +136,17 @@ public abstract class MenuData implements Menu{
 
             if (!servicosNaoAprovados.isEmpty()) {
                 servicosNaoAprovados.forEach(servico -> System.out.println(servico.toString()));
-                ;
                 return servicosNaoAprovados;
             }
 
         } catch (Exception e) {
-
+            System.out.println(e.getMessage());
         }
         return servicosNaoAprovados;
     }
 
 
-    public boolean getAllClientInfo() {
+    public void getAllClientInfo() {
         ArrayList<Pessoa> pessoaClientes = new ArrayList<>();
 
         //Getting all clients
@@ -140,31 +159,173 @@ public abstract class MenuData implements Menu{
         //if there are no clients
         if (pessoaClientes.isEmpty()) {
             System.out.println("Não existem clientes de momento.");
-            return false;
+            return;
         }
 
-        AtomicInteger totalGasto = new AtomicInteger();
-        //Looping through clients
-        pessoaClientes.forEach(cliente -> {
+        int totalGasto = 0;
+
+        //Getting all clients marcacoes
+        for (Pessoa cliente : pessoaClientes) {
             System.out.println(cliente.toString());
-            ArrayList<Marcacao> marcacoesClientes = new ArrayList<>();
+            ArrayList<Marcacao> marcacoesCliente = new ArrayList<>();
 
-            //Buscar marcacoes do respetivo cliente
-            mainData.getMarcacoes().forEach(marcacao -> {
+            //Lopping pelas marcacoes todas e ver se pertence a cliente
+            for (Marcacao marcacao : mainData.getMarcacoes()) {
                 if (marcacao.getCliente() == cliente) {
-
                     System.out.println(marcacao.toString());
-                    totalGasto.addAndGet(marcacao.getServicoEmpresa().getPrecoComIva());
-                    marcacoesClientes.add(marcacao);
+                    totalGasto += (marcacao.getServicoEmpresa().getPrecoComIva()) * 1.35;
+                    marcacoesCliente.add(marcacao);
                 }
-            });
-
-            if (marcacoesClientes.isEmpty()) {
+            }
+            if (marcacoesCliente.isEmpty()) {
                 System.out.println("\n\tCliente sem Marcações Realizadas");
             } else {
                 System.out.println("\n\tTotal Gasto - " + totalGasto);
             }
-        });
-        return true;
+        }
     }
+
+    public ArrayList<Marcacao> getMarcadoesDisponiveisParaAvaliar() {
+        ArrayList<Marcacao> marcacoesDisponiveisParaAvaliar = new ArrayList<>();
+        try {
+            getMainData().getMarcacoes().forEach(marcacao -> {
+                if (marcacao.getCliente().equals(getMainData().getCurrentPessoa()) &&
+                        marcacao.getEstadoMarcacao().getId_estadoMarcacao() == 2) {
+                    System.out.println(marcacao.toString());
+                    marcacoesDisponiveisParaAvaliar.add(marcacao);
+                }
+            });
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return marcacoesDisponiveisParaAvaliar;
+    }
+
+    public ArrayList<ServicoEmpresa> getServicosDisponiveisPorDistrito(int distritoId) {
+        ArrayList<ServicoEmpresa> servicosDisponiveis = new ArrayList<>();
+
+        try {
+            for (ServicoEmpresa servEmp : getMainData().getServicoEmpresas()) {
+                if (servEmp.getLocalidade().getDistrito().getId_distrito() == distritoId && servEmp.isAprovado()) {
+                    servicosDisponiveis.add(servEmp);
+                }
+            }
+            return servicosDisponiveis;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        return servicosDisponiveis;
+    }
+
+
+    public void printDistritos() {
+        getMainData().getDistritos().forEach(distrito -> {
+            System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
+        });
+    }
+
+    public int getMarcacao() {
+        boolean aux = false;
+        int idMarcacaoEscolhida = -1;
+        do {
+            try {
+                idMarcacaoEscolhida = Integer.parseInt(scanner.nextLine());
+                getMainData().getMarcacoes().get(idMarcacaoEscolhida);
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. Selecione uma marcação: ");
+            }
+        } while (!aux);
+        return idMarcacaoEscolhida;
+    }
+
+    public int getEstadoMarcacao() {
+        boolean aux = false;
+        int idEstadoEscolhido = -1;
+        do {
+            try {
+                idEstadoEscolhido = Integer.parseInt(scanner.nextLine());
+                getMainData().getEstadoMarcacaos().get(idEstadoEscolhido);
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. Selecione um estado: ");
+            }
+        } while (!aux);
+        return idEstadoEscolhido;
+    }
+
+    public int intVerifier() {
+        int id = -1;
+        try {
+            id = Integer.parseInt(scanner.nextLine());
+            if (id < 0) {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            System.out.print("Opção Inválida. ");
+        }
+        return id;
+    }
+
+    public int getIdDistrito() {
+        int distritoId = -1;
+        while (distritoId > 20 || distritoId < 0) {
+            try {
+                System.out.print("Selecione o Distrito a que pertence: ");
+                distritoId = Integer.parseInt(scanner.nextLine());
+                if (distritoId > 20 || distritoId < 0) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. ");
+            }
+        }
+        return distritoId;
+    }
+
+    public int getIdServicoPorServicosDisponiveis(ArrayList<ServicoEmpresa> servicosDisponiveis) {
+        int servicoId = -1;
+        boolean aux = false;
+        do {
+            try {
+                System.out.print("Selecione o serviço que pretende: ");
+                servicoId = Integer.parseInt(scanner.nextLine());
+                for (ServicoEmpresa servico : servicosDisponiveis) {
+                    if (servico.getId_servicoEmpresa() == servicoId) {
+                        aux = true;
+                        return servicoId;
+
+                    }
+                }
+                throw new Exception();
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. ");
+            }
+        } while (!aux);
+        return servicoId;
+    }
+
+    public int getIdMaracaoParaAvaliarDisponiveis(ArrayList<Marcacao> marcacoesDisponiveis) {
+        int marcacaoId = -1;
+        boolean aux = false;
+        do {
+            try {
+                System.out.print("Selecione a marcação que pretende avaliar: ");
+                marcacaoId = Integer.parseInt(scanner.nextLine());
+                for (Marcacao marcacao : marcacoesDisponiveis) {
+                    if (marcacao.getId_marcacao() == marcacaoId) {
+                        aux = true;
+                        return marcacaoId;
+
+                    }
+                }
+                throw new Exception();
+            } catch (Exception e) {
+                System.out.print("Opção Inválida. ");
+            }
+        } while (!aux);
+        return marcacaoId;
+    }
+
 }

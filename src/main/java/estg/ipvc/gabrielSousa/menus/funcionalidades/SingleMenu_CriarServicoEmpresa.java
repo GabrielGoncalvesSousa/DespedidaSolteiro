@@ -3,62 +3,78 @@ package estg.ipvc.gabrielSousa.menus.funcionalidades;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Distrito;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Localidade;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
-import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicReference;
 
 public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
     @Override
     public void action() {
+        //Instanciar a nested class que ira ajudar a obter os dados para o registo
         RegisterServicoEmpresaStringGetter stringHelper = new RegisterServicoEmpresaStringGetter();
 
-        Pessoa currentPessoa = getMainData().getCurrentPessoa();
-
+        //Get o nome do servico
         String nomeServico = stringHelper.getNomeServico();
-        Boolean auxBoolean =verificaNomeServico(nomeServico);;
+        boolean auxBoolean = verificaNomeServico(nomeServico);
 
-        while (!auxBoolean){
+        //Verificar se o nome ja nao foi utilizado
+        while (!auxBoolean) {
             System.out.print("Nome de serviço já usado. Escolha outro: ");
-            nomeServico= scanner.nextLine();
-            auxBoolean=verificaNomeServico(nomeServico);
+            nomeServico = getScanner().nextLine();
+            auxBoolean = verificaNomeServico(nomeServico);
         }
 
+        //Obter dados do servico com o helper
         String contato = stringHelper.getContatoSer();
-        String duracao = stringHelper.getDuracaoSer();
-        int iva = stringHelper.getIva();
-        int precoComIva = stringHelper.getPrecoIva();
-        String desc = stringHelper.getDescricaoSer();
+        Duration duracao = stringHelper.getDuracaoSer();
 
+        //Get iva e verificar se nao está a ser introduzido uma string nem numeros negativos
+        System.out.print("Introduza o Iva: ");
+        int iva = intVerifier();
+        while (iva < 0) {
+            System.out.print("Introduza o Iva: ");
+            iva = intVerifier();
+        }
+
+        //Get preco com iva e verificar se nao está a ser introduzido uma string.
+        System.out.print("Introduza o preço com Iva: ");
+        int precoComIva = intVerifier();
+        while (precoComIva < 0) {
+            System.out.print("Introduza o preço com Iva: ");
+            precoComIva = intVerifier();
+        }
+
+        //String getters com verificacao
+        String desc = stringHelper.getDescricaoSer();
         String codigo_postal = stringHelper.getCodPost();
         String rua = stringHelper.getRua();
-        System.out.println("Selecione o Distrito a que pertence: ");
 
-        getMainData().getDistritos().forEach(distrito -> {
-            System.out.println(distrito.getId_distrito() + " - " + distrito.getNomeDistrito());
-        });
+        //Selecionar distrito e verificar
+        printDistritos();
+        int distritoId = getIdDistrito();
 
-        int dis = stringHelper.getDist();
+        //Obter a referencia do objeto a que o id corresponde
+        Distrito distritoSelecionado = getMainData().getDistritos().get(distritoId);
 
+        //Criar localidade nova onde o servico de empresa se localiza e adicionar na lista
+        Localidade locSer = new Localidade(codigo_postal, distritoSelecionado, rua);
 
-        AtomicReference<Distrito> distritoSer = new AtomicReference<>();
-        getMainData().getDistritos().forEach(distrito -> {
-            if (distrito.getId_distrito() == dis) {
-                distritoSer.set(distrito);
-            }
-        });
-
-        Localidade locSer = new Localidade(codigo_postal, distritoSer.get(), rua);
-
-        ServicoEmpresa currentServ = new ServicoEmpresa(currentPessoa, nomeServico, contato,
+        //Criar instancia de servico com os dados do servico
+        ServicoEmpresa currentServ = new ServicoEmpresa(getMainData().getCurrentPessoa(), nomeServico, contato,
                 duracao, locSer, precoComIva, iva, desc);
 
+        //Adicionar a instancia criada de servico na lista
         getMainData().getServicoEmpresas().add(currentServ);
 
-
         System.out.println("Serviço criado com sucesso");
+
+        //Guardar os dados no ficheiro
+        getSerialization().saveData(getMainData());
     }
 
     @Override
@@ -79,56 +95,77 @@ public class SingleMenu_CriarServicoEmpresa extends MenuData implements Menu {
 
 class RegisterServicoEmpresaStringGetter {
     private final Scanner scanner = new Scanner(System.in);
+    private static final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("k:m");
 
     public String getNomeServico() {
         System.out.print("Introduza o Nome do Serviço: ");
-        return scanner.nextLine();
+        String nomeServico = scanner.nextLine();
+
+        while (nomeServico.isEmpty()) {
+            System.out.print("Campo do nome de Serviço vazio, Introduza o nome de Serviço: ");
+            nomeServico = scanner.nextLine();
+        }
+        return nomeServico;
     }
 
     public String getContatoSer() {
         System.out.print("Introduza o Contato: ");
-        return scanner.nextLine();
+        String contato = scanner.nextLine();
+
+        while (contato.isEmpty()) {
+            System.out.print("Campo de contato vazio, Introduza o contato: ");
+            contato = scanner.nextLine();
+        }
+        return contato;
     }
 
-    public String getDuracaoSer() {
-        System.out.print("Introduza a duração do serviço: ");
-        return scanner.nextLine();
-    }
-
-    public int getIva() {
-        System.out.print("Introduza o Iva: ");
-        return Integer.parseInt(scanner.nextLine());
-    }
-
-
-    public int getPrecoIva() {
-        System.out.print("Introduza o preço com Iva: ");
-        return Integer.parseInt(scanner.nextLine());
+    public Duration getDuracaoSer() {
+        boolean aux = false;
+        Duration duracaoConvertida =Duration.ZERO;
+        do {
+            try {
+                System.out.print("Introduza a duração do serviço em horas:minutos Exemplo - '1:30' : ");
+                String duracaoSer = scanner.nextLine();
+                LocalTime localTime = LocalTime.parse(duracaoSer, timeFormatter);
+                duracaoConvertida = duracaoConvertida.plusHours(localTime.getHour()).plusMinutes(localTime.getMinute());
+                aux = true;
+            } catch (Exception e) {
+                System.out.print("Duração Inválida.");
+            }
+        } while (!aux);
+        return duracaoConvertida;
     }
 
     public String getDescricaoSer() {
         System.out.print("Introduza a descrição para o serviço: ");
-        return scanner.nextLine();
+        String descricao = scanner.nextLine();
+
+        while (descricao.isEmpty()) {
+            System.out.print("Campo da descrição vazio. Introduza a descrição: ");
+            descricao = scanner.nextLine();
+        }
+        return descricao;
     }
 
     public String getCodPost() {
         System.out.print("Introduza o código-postal: ");
-        return scanner.nextLine();
+        String codP = scanner.nextLine();
+
+        while (codP.isEmpty()) {
+            System.out.print("Campo do código-postal vazio. Introduza o código-postal: ");
+            codP = scanner.nextLine();
+        }
+        return codP;
     }
 
     public String getRua() {
         System.out.print("Introduza o nome da Rua: ");
-        return scanner.nextLine();
-    }
+        String rua = scanner.nextLine();
 
-    public int getDist() {
-
-        int dis = Integer.parseInt(scanner.nextLine());
-        while (dis > 20 || dis < 0) {
-            System.out.print("Distrito selecionado inválido, selecione outro: ");
-            dis = Integer.parseInt(scanner.nextLine());
+        while (rua.isEmpty()) {
+            System.out.print("Campo da rua vazio. Introduza o nome da Rua: ");
+            rua = scanner.nextLine();
         }
-        return dis;
+        return rua;
     }
-
 }
