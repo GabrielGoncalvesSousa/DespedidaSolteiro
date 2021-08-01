@@ -7,9 +7,6 @@ import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
-import javax.swing.text.DateFormatter;
-import java.text.DateFormat;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,22 +14,14 @@ import java.util.Scanner;
 
 public abstract class MenuData implements Menu {
     private static final Serialization serialization = new Serialization();
-    private static MainData mainData = new MainData();
-    private static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("d/M/y H:mm");
+    private static MainData mainData = serialization.loadData();
     private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/y");
-    private static DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("k:m");
     private static Scanner scanner = new Scanner(System.in);
-
-
-    //private static MainData mainData = serialization.loadData();
 
     public static DateTimeFormatter getDateFormatter() {
         return dateFormatter;
     }
 
-    public static DateTimeFormatter getDateTimeFormatter() {
-        return dateTimeFormatter;
-    }
 
     public static Serialization getSerialization() {
         return serialization;

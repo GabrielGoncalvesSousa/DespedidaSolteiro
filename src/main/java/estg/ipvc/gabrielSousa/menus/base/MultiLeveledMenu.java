@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package estg.ipvc.gabrielSousa.menus.base;
-
-
 import java.util.Arrays;
-import java.util.Scanner;
 import java.util.Stack;
 
 public abstract class MultiLeveledMenu extends MenuData implements Menu {
@@ -22,7 +19,6 @@ public abstract class MultiLeveledMenu extends MenuData implements Menu {
     public MultiLeveledMenu() {
 
     }
-
     /**
      * An helper function to read an option from the command line
      */

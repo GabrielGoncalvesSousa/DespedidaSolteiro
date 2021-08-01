@@ -1,12 +1,11 @@
 package estg.ipvc.gabrielSousa.menus.funcionalidades;
 
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
-import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 
 import java.util.ArrayList;
 
-public class SingleMenu_AprovarServicoEmpresa extends MenuData implements Menu {
+public class SingleMenu_AprovarServicoEmpresa extends MenuData {
     @Override
     public void action() {
         try {

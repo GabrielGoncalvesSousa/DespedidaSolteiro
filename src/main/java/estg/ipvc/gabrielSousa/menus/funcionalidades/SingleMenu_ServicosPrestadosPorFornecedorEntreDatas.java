@@ -12,8 +12,6 @@ import java.util.ArrayList;
 public class SingleMenu_ServicosPrestadosPorFornecedorEntreDatas extends MenuData implements Menu {
     @Override
     public void action() {
-
-
         try {
             //Obter lista de fornecedores de serviço se tiver fornecedores disponiveis;
             ArrayList<Pessoa> fornecedorServicosDisponiveis = getListaFornecedorServicoDisponiveis();

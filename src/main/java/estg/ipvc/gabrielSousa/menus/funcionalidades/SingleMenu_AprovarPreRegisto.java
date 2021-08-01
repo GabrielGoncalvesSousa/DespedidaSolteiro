@@ -5,7 +5,7 @@ import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import java.util.ArrayList;
 
-public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
+public class SingleMenu_AprovarPreRegisto extends MenuData {
     @Override
     public void action() {
         try {
