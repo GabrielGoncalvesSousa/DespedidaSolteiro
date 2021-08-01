@@ -5,7 +5,7 @@ import estg.ipvc.gabrielSousa.menus.base.Menu;
 import estg.ipvc.gabrielSousa.menus.base.MenuData;
 import java.util.ArrayList;
 
-public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
+public class SingleMenu_AprovarPreRegisto extends MenuData {
     @Override
     public void action() {
         try {
@@ -37,7 +37,7 @@ public class SingleMenu_AprovarPreRegisto extends MenuData implements Menu {
     public boolean optionChecker(ArrayList<Pessoa> pessoasNaoProvadas) {
         try {
             System.out.print("Escolha um utilizador a aprovar: ");
-            int id = Integer.parseInt(scanner.nextLine());
+            int id = Integer.parseInt(getScanner().nextLine());
 
             for (Pessoa p : pessoasNaoProvadas) {
                 if (p.getId_pessoa() == id) {

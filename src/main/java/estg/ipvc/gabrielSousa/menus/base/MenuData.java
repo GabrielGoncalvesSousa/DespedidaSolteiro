@@ -1,33 +1,41 @@
 package estg.ipvc.gabrielSousa.menus.base;
 
 import estg.ipvc.gabrielSousa.entidades.MainData;
-import estg.ipvc.gabrielSousa.entidades.marcacao.Distrito;
 import estg.ipvc.gabrielSousa.entidades.marcacao.Marcacao;
 import estg.ipvc.gabrielSousa.entidades.marcacao.ServicoEmpresa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Cliente;
 import estg.ipvc.gabrielSousa.entidades.pessoa.Pessoa;
 import estg.ipvc.gabrielSousa.entidades.pessoa.TipoPessoa;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public abstract class MenuData implements Menu {
     private static final Serialization serialization = new Serialization();
-    private static MainData mainData =  new MainData();
+    private static MainData mainData = serialization.loadData();
+    private static DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("d/M/y");
+    private static Scanner scanner = new Scanner(System.in);
 
-    //private static MainData mainData = serialization.loadData();
+    public static DateTimeFormatter getDateFormatter() {
+        return dateFormatter;
+    }
 
-    public static Scanner scanner = new Scanner(System.in);
 
     public static Serialization getSerialization() {
         return serialization;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
     }
 
     public MainData getMainData() {
         return mainData;
     }
 
+    //Checkar se o mail existe
     public boolean checkIfMailExists(String mail) {
         try {
             for (Pessoa p : mainData.getPessoas()) {
@@ -41,6 +49,7 @@ public abstract class MenuData implements Menu {
         return false;
     }
 
+    //Checkar se o login existe
     public boolean checkIfLoginExists(String login) {
         try {
             for (Pessoa p : mainData.getPessoas()) {
@@ -48,13 +57,13 @@ public abstract class MenuData implements Menu {
                     throw new Exception();
                 }
             }
-
         } catch (Exception e) {
             return true;
         }
         return false;
     }
 
+    //Checkar o login
     public boolean checkIfLoginAndPasswordExists(String login, String password) {
         try {
             for (Pessoa p : mainData.getPessoas()) {
@@ -69,6 +78,7 @@ public abstract class MenuData implements Menu {
         return false;
     }
 
+    //Imprimir os tipo de utilizadores disponiveis para o pre registo
     public void getTiposDeUtilizadorParaPreRegisto() {
 
         for (TipoPessoa tp : mainData.getTpPessoas()) {
@@ -77,6 +87,7 @@ public abstract class MenuData implements Menu {
         }
     }
 
+    //Obter o tipo de pessoa selecionada para o registo atraves do id
     public TipoPessoa getTipoPessoaSelecionadaParaRegisto(int id_tp) {
         try {
             for (TipoPessoa tipoPessoa : mainData.getTpPessoas()) {
@@ -140,7 +151,7 @@ public abstract class MenuData implements Menu {
 
         //Getting all clients
         mainData.getPessoas().forEach(pessoa -> {
-            if (pessoa instanceof Cliente && pessoa.isAprovado() ) {
+            if (pessoa instanceof Cliente && pessoa.isAprovado()) {
                 pessoaClientes.add(pessoa);
             }
         });
@@ -162,7 +173,7 @@ public abstract class MenuData implements Menu {
             for (Marcacao marcacao : mainData.getMarcacoes()) {
                 if (marcacao.getCliente() == cliente) {
                     System.out.println(marcacao.toString());
-                    totalGasto += (marcacao.getServicoEmpresa().getPrecoComIva());
+                    totalGasto += (marcacao.getServicoEmpresa().getPrecoComIva()) * 1.35;
                     marcacoesCliente.add(marcacao);
                 }
             }
@@ -195,7 +206,7 @@ public abstract class MenuData implements Menu {
 
         try {
             for (ServicoEmpresa servEmp : getMainData().getServicoEmpresas()) {
-                if (servEmp.getLocalidade().getDistrito().getId_distrito() == distritoId) {
+                if (servEmp.getLocalidade().getDistrito().getId_distrito() == distritoId && servEmp.isAprovado()) {
                     servicosDisponiveis.add(servEmp);
                 }
             }
@@ -207,18 +218,6 @@ public abstract class MenuData implements Menu {
         return servicosDisponiveis;
     }
 
-    public ServicoEmpresa getServicoById(int id) {
-        try {
-            for (ServicoEmpresa servico : getMainData().getServicoEmpresas()) {
-                if (servico.getId_servicoEmpresa() == id) {
-                    return servico;
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
-    }
 
     public void printDistritos() {
         getMainData().getDistritos().forEach(distrito -> {
